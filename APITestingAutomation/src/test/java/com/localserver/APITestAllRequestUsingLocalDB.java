@@ -12,8 +12,7 @@ import com.jayway.restassured.response.Response;
 import static com.jayway.restassured.RestAssured.*;
 
 public class APITestAllRequestUsingLocalDB {
-
-	// /////////////////////POST
+	// SET_UP
 	// set up dummy server for POST, GET etc.
 	// https://github.com/typicode/json-server
 	// install node js first
@@ -34,7 +33,7 @@ public class APITestAllRequestUsingLocalDB {
 	// To Start JSON type cmd = json-server --watch db.json
 
 	// Get Request : http://localhost:3000/posts
-	 //@Test(priority=1)
+	 @Test(priority=1)
 	public void test_01() {
 		Response resp = when().get("http://localhost:3000/posts");
 		System.out.println("Get response is =>" + resp.asString());
