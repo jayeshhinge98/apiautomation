@@ -42,7 +42,7 @@ public class APITestGetRequest {
 	}
 
 	// How to give parameters
-	 //@Test
+	 @Test
 	public void Test_03() {
 		Response resp = given()
 				.param("q", "London")

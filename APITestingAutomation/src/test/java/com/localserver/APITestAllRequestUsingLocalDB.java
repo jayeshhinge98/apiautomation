@@ -34,14 +34,14 @@ public class APITestAllRequestUsingLocalDB {
 	// To Start JSON type cmd = json-server --watch db.json
 
 	// Get Request : http://localhost:3000/posts
-	// @Test(priority=1)
+	 //@Test(priority=1)
 	public void test_01() {
 		Response resp = when().get("http://localhost:3000/posts");
 		System.out.println("Get response is =>" + resp.asString());
 
 	}
 
-	// POST Request
+	// POST Request(create new entry/add new entries to resources)
 	// @Test(priority=2)
 	public void test_02() {
 		Response resp = given()
@@ -74,7 +74,7 @@ public class APITestAllRequestUsingLocalDB {
 				+ resp.asString());
 	}
 
-	// PUT Request
+	// PUT Request(Update the data)
 	// @Test
 	public void test_05() {
 		PostData pd = new PostData();
@@ -86,10 +86,10 @@ public class APITestAllRequestUsingLocalDB {
 		System.out.println("PUT response is =>" + resp.asString());
 	}
 
-	// PATCH Request
+	// PATCH Request(Update only specific data, no need to pass all the parameters)
 	// @Test
 	public void test_06() {
-		PostData pd = new PostData();
+		// PostData pd = new PostData();
 		// pd.setId(5);
 		// pd.setTitle("Patch update Request");
 		Response resp = given().body("{\"title\":\"Patch update Request2\"}")
@@ -98,10 +98,10 @@ public class APITestAllRequestUsingLocalDB {
 		System.out.println("PATCH response is =>" + resp.asString());
 	}
 
-	// Delete Request
-	@Test
+	// Delete Request(Delete specific resources)
+	//@Test
 	public void test_07() {
-		PostData pd = new PostData();
+		// PostData pd = new PostData();
 		// pd.setId(5);
 		// pd.setTitle("Patch update Request");
 		Response resp = when().delete("http://localhost:3000/posts/5");
