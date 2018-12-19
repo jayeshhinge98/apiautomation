@@ -30,7 +30,7 @@ public class SuiteBase {
 		// setUpSafari();
 		// safaridriver.get("https://www.google.com");
 		setUpChrome();
-		chdriver.get("https://www.crmpro.com/index.html");
+		chdriver.get("https://www.mycertlink.org/Dashboard/login.aspx#");
 		// setUpHeadLessBrowser();
 		// hldriver.get("https://www.google.com");
 
@@ -46,10 +46,10 @@ public class SuiteBase {
 		hldriver.setJavascriptEnabled(true);
 		hldriver.manage().window().maximize();
 	}
-
+	
 	public void setUpChrome() {
 		System.setProperty("webdriver.chrome.driver",
-				"/Users/jayesh.hinge/git/demo/DemoTest/src/main/resources/chromedriver");
+				"D:/Jayesh Hinge/chromedriver.exe");
 		chdriver = new ChromeDriver();
 		chdriver.manage().window().maximize();
 		chwait = new WebDriverWait(chdriver, 30);
