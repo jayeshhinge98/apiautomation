@@ -92,6 +92,7 @@ public class CommonActions {
 	}
 
 	public boolean isElementPresent(WebDriver driver, By by) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		try {
 			driver.findElement(by);
 			return true;

@@ -9,7 +9,7 @@ public class DLoginUI {
 	
 	public By UsernameUI=By.id("MainContent_txtusername");
 	public By PasswordUI=By.id("MainContent_txtpassword");
-	public By LogionButtonUI =By.id("btnLogin");
+	public By LoginButtonUI =By.id("btnLogin");
 	public By ForgotPasswordUI=By.linkText("Forgot your password?");
 	public By RequestAccessToCertLinkUI=By.xpath("//*[@id=\"divLogin\"]/div[3]/div[2]/a/");
 	
