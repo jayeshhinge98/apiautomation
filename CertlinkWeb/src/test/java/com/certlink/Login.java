@@ -2,12 +2,12 @@ package com.certlink;
 
 import org.testng.annotations.Test;
 
-import com.actions.board_admin.LoginActions;
+import com.actions.diplomate.DLoginAction;
 import com.utilities.SuiteBase;
 
 public class Login extends SuiteBase {
 
-	LoginActions la = new LoginActions();
+	DLoginAction la = new DLoginAction();
 
 	@Test(priority = 1)
 	public void verifyDiplomateLoginUsingValidCredentials() {
