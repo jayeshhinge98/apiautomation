@@ -42,6 +42,9 @@ public class DDashboardActions {
 			sqlStatement = con.createStatement();
 			String sqlQuery = "SELECT * FROM table_name WHERE condition";
 			ResultSet resSet = sqlStatement.executeQuery(sqlQuery);
+			/*while (resSet.next()) {
+				    System.out.println(resSet.getString(""));
+				}*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
