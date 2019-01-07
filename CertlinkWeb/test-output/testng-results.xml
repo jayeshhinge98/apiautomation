@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2018-12-26T06:49:54Z" name="Default suite" finished-at="2018-12-26T06:50:22Z" duration-ms="28118">
+  <suite started-at="2019-01-07T12:20:17Z" name="Default suite" finished-at="2019-01-07T12:20:32Z" duration-ms="15437">
     <groups>
     </groups>
-    <test started-at="2018-12-26T06:49:54Z" name="Default test" finished-at="2018-12-26T06:50:22Z" duration-ms="28118">
-      <class name="com.certlink.Login">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.certlink.Login@a38c7fe]" started-at="2018-12-26T06:49:54Z" name="setUp" finished-at="2018-12-26T06:50:07Z" duration-ms="12885" status="PASS">
+    <test started-at="2019-01-07T12:20:17Z" name="Default test" finished-at="2019-01-07T12:20:32Z" duration-ms="15437">
+      <class name="com.certlink.DiplomateLogin">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.certlink.DiplomateLogin@1e0b4072]" started-at="2019-01-07T12:20:17Z" name="setUp" finished-at="2019-01-07T12:20:30Z" duration-ms="13118" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyLoginUsingValidCredentials()[pri:1, instance:com.certlink.Login@a38c7fe]" started-at="2018-12-26T06:50:07Z" name="verifyLoginUsingValidCredentials" finished-at="2018-12-26T06:50:20Z" duration-ms="13614" status="PASS">
+        <test-method signature="verifyDiplomateLoginUsingInValidCredentials()[pri:2, instance:com.certlink.DiplomateLogin@1e0b4072]" started-at="2019-01-07T12:20:30Z" name="verifyDiplomateLoginUsingInValidCredentials" finished-at="2019-01-07T12:20:32Z" duration-ms="2278" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyLoginUsingValidCredentials -->
-        <test-method signature="verifyLoginUsingInValidCredentials()[pri:2, instance:com.certlink.Login@a38c7fe]" started-at="2018-12-26T06:50:20Z" name="verifyLoginUsingInValidCredentials" finished-at="2018-12-26T06:50:22Z" duration-ms="1585" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyLoginUsingInValidCredentials -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:com.certlink.Login@a38c7fe]" started-at="2018-12-26T06:50:22Z" name="cleanUp" finished-at="2018-12-26T06:50:22Z" duration-ms="0" status="PASS">
+        </test-method> <!-- verifyDiplomateLoginUsingInValidCredentials -->
+        <test-method is-config="true" signature="cleanUp()[pri:0, instance:com.certlink.DiplomateLogin@1e0b4072]" started-at="2019-01-07T12:20:32Z" name="cleanUp" finished-at="2019-01-07T12:20:32Z" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanUp -->
-      </class> <!-- com.certlink.Login -->
+      </class> <!-- com.certlink.DiplomateLogin -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

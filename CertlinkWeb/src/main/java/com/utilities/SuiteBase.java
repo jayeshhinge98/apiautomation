@@ -1,6 +1,10 @@
 package com.utilities;
 
 import java.net.MalformedURLException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
@@ -14,6 +18,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
+
+import com.aventstack.extentreports.ExtentReports;
 
 public class SuiteBase {
 	public static WebDriver chdriver = null;
@@ -23,10 +30,11 @@ public class SuiteBase {
 	public static HtmlUnitDriver hldriver = null;
 	public static WebDriverWait chwait = null;
 	public static FluentWait<WebDriver> chfwait = null;
-	// public static ExtentReport report=null;
+	public static ExtentReports report = null;
+	public static Connection con=null;
 
 	@BeforeTest
-	public void setUp() {
+	public void setUp() throws SQLException, ClassNotFoundException {
 		// setUpSafari();
 		// safaridriver.get("https://www.google.com");
 		setUpChrome();
@@ -34,7 +42,21 @@ public class SuiteBase {
 		// setUpHeadLessBrowser();
 		// hldriver.get("https://www.google.com");
 
+		try {
+			//DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());    
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			System.out.println("Trying to connect");
+			String dburl = "jdbc:sqlserver://10.22.43.6:1433;databaseName=FIGMDHQIManagementABMS";
+			con = DriverManager.getConnection(dburl, "mapping", "mp3245");
+			System.out.println("Connection Established Successful and the DATABASE NAME IS:"
+					+ con.getMetaData().getDatabaseProductName());
+		} catch (Exception e) {
+			System.out.println("Unable to make connection with DB");
+			e.printStackTrace();
+		}
+
 	}
+
 
 	public void setUpSafari() {
 		safaridriver = new SafariDriver();
@@ -46,10 +68,9 @@ public class SuiteBase {
 		hldriver.setJavascriptEnabled(true);
 		hldriver.manage().window().maximize();
 	}
-	
+
 	public void setUpChrome() {
-		System.setProperty("webdriver.chrome.driver",
-				"D:/Jayesh Hinge/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:/Jayesh Hinge/chromedriver.exe");
 		chdriver = new ChromeDriver();
 		chdriver.manage().window().maximize();
 		chwait = new WebDriverWait(chdriver, 30);

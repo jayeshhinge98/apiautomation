@@ -6,9 +6,8 @@
       <class name="com.certlink.Login">
         <methods>
           <include name="setUp"/>
-          <include name="verifyLoginUsingValidCredentials"/>
           <include name="cleanUp"/>
-          <include name="verifyLoginUsingInValidCredentials"/>
+          <include name="verifyDiplomateLoginUsingInValidCredentials"/>
         </methods>
       </class> <!-- com.certlink.Login -->
     </classes>
