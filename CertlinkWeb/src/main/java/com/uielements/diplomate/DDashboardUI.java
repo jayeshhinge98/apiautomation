@@ -42,4 +42,54 @@ public class DDashboardUI {
 	public By ResourceProviderDropdownOptions1(String optionnumber) {
 		return By.xpath("//*[@id='provider']/option[" + optionnumber + "]");
 	}
+	
+	// My Account
+	public By MyAccountProfilePicUpload=By.className("file-upload");
+	public By MyAccountEmailField=By.id("txtEmail");
+	public By MyAccountFirstName=By.id("txtFirstName");
+	public By MyAccountMiddleName=By.id("txtMiddleName");
+	public By MyAccountLastName=By.id("txtLastName");
+	public By MyAccountSuffix=By.id("ddlSuffix");
+	public By MyAccountAlternateNames=By.id("txtAlternateNames");
+	public By MyAccountGender=By.id("ddlGender");
+	public By MyAccountADASetting=By.id("ddlADASetting");
+	// link 1
+	// link 2
+	public By MyAccountbtnResetPassword=By.id("btnResetPasswordPopup");
+	public By MyAccountbtnResetPasswordPopupX=By.xpath("//*[@id='PageContent_UpdPanel2']/div[1]/button/span/span[3]");
+	public By MyAccountbtnResetPasswordPopupClose=By.xpath("//*[@id='PageContent_UpdPanel2']/div[3]/button");	
+	public By MyAccountbtnResetPasswordPopupSave=By.id("btnResetPassword");
+	public By MyAccountResetPasswordPopupOldPassword=By.id("PageContent_PasswordOld");	
+	public By MyAccountResetPasswordPopupNewPassword=By.id("txtResetPassword");	
+	public By MyAccountResetPasswordPopupConfirmPassword=By.id("PageContent_txtResetPasswordconfirm");
+	public By MyAccountResetPasswordPopupLabel=By.id("ResetPasswordlabel");
+	public By MyAccountResetPasswordPopupOldPasswordError=By.id("PasswordOldError");	
+	public By MyAccountResetPasswordPopupNewPasswordError=By.id("PasswordNewError");	
+	public By MyAccountResetPasswordPopupConfirmPasswordError=By.id("ConfirmPasswordError");
+	public By MyAccountPasswordChangeSuccessMessage=By.xpath("//div[contains(text(),'Password changed.')]");	
+	//*[@class='notifyjs-metro-base notifyjs-metro-success']
+	public By MyAccountPhoneNo=By.id("txtPhoneNo");
+	public By MyAccountPreferedContactEmail=By.id("//input[@id='rdoEmail' and @name='PreferedContact']");
+	public By MyAccountPreferedContactPhone=By.id("//input[@id='rdoPhone' and @name='PreferedContact']");
+	public By MyAccountADASetting=By.id("ddlADASetting");
+	public By MyAccountADASetting=By.id("ddlADASetting");
+	public By MyAccountADASetting=By.id("ddlADASetting");
+	public By MyAccountADASetting=By.id("ddlADASetting");
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

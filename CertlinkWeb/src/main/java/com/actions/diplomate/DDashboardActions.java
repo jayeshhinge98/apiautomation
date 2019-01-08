@@ -42,23 +42,22 @@ public class DDashboardActions {
 			sqlStatement = con.createStatement();
 			String sqlQuery = "SELECT * FROM table_name WHERE condition";
 			ResultSet resSet = sqlStatement.executeQuery(sqlQuery);
-			/*while (resSet.next()) {
-				    System.out.println(resSet.getString(""));
-				}*/
+			/*
+			 * while (resSet.next()) {     System.out.println(resSet.getString("")); }
+			 */
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
+
 		if (ca.isElementPresent(driver, dd.ResourceContainers)) {
-		ca.clickOnElement(driver, dd.ResourceSearchFieldUI);
-		ca.enterTextInTextField(driver, dd.ResourceSearchFieldUI, resources);
-		ca.clickOnElement(driver, dd.ResourceSearchSubmitButtonUI);		
-			List<WebElement> containerlist=driver.findElements(dd.ResourceContainers);
-			int contSize=1;//containerlist.size();
-			for(WebElement we :containerlist) {
-				ca.clickOnElement(driver,dd.ResourcesExpandButtons(contSize));
+			ca.clickOnElement(driver, dd.ResourceSearchFieldUI);
+			ca.enterTextInTextField(driver, dd.ResourceSearchFieldUI, resources);
+			ca.clickOnElement(driver, dd.ResourceSearchSubmitButtonUI);
+			List<WebElement> containerlist = driver.findElements(dd.ResourceContainers);
+			int contSize = 1;// containerlist.size();
+			for (WebElement we : containerlist) {
+				ca.clickOnElement(driver, dd.ResourcesExpandButtons(contSize));
 				contSize++;
 			}
 			List<WebElement> list = driver.findElements(dd.ResourcesGetNameList);
@@ -74,16 +73,23 @@ public class DDashboardActions {
 				}
 			}
 
-		}
-		else {
+		} else {
 			System.out.println("Resources are not present...!");
 		}
 	}
 
 	public void ResourceClearSearch(WebDriver driver) {
 		ca.clearText(driver, dd.ResourceSearchFieldUI);
-		ca.clickOnElement(driver, dd.ResourceSearchSubmitButtonUI);	
+		ca.clickOnElement(driver, dd.ResourceSearchSubmitButtonUI);
 	}
+
+	/*
+	 * My Account: Update setting(s), Reset password, Add Profile picture, View setting(s)
+	 */
 	
+	public void UpdateMyAccountSettings(WebDriver driver) {
+		ca.clickOnElement(driver, dd.DMyAccountUI);
+		
+	}
 
 }
