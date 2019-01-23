@@ -201,5 +201,11 @@ public class CommonActions {
 
 		return data;
 	}
-
+	
+	public String getTextForLocator(WebDriver driver,By by) {
+		return driver.findElement(by).getText();
+	} 
+	public String getAttributeValue(WebDriver driver,By by, String attributeName) {
+		return driver.findElement(by).getAttribute(attributeName);
+	} 
 }

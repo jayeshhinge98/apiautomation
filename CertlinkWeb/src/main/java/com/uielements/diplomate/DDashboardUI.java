@@ -66,28 +66,19 @@ public class DDashboardUI {
 	public By MyAccountResetPasswordPopupOldPasswordError=By.id("PasswordOldError");	
 	public By MyAccountResetPasswordPopupNewPasswordError=By.id("PasswordNewError");	
 	public By MyAccountResetPasswordPopupConfirmPasswordError=By.id("ConfirmPasswordError");
-	public By MyAccountPasswordChangeSuccessMessage=By.xpath("//div[contains(text(),'Password changed.')]");	
+	public By MyAccountSaveSuccessMessage=By.xpath("//div[@class='notifyjs-metro-base notifyjs-metro-success']/div[2]/div[2]");	
 	//*[@class='notifyjs-metro-base notifyjs-metro-success']
 	public By MyAccountPhoneNo=By.id("txtPhoneNo");
 	public By MyAccountPreferedContactEmail=By.id("//input[@id='rdoEmail' and @name='PreferedContact']");
 	public By MyAccountPreferedContactPhone=By.id("//input[@id='rdoPhone' and @name='PreferedContact']");
-	public By MyAccountADASetting=By.id("ddlADASetting");
-	public By MyAccountADASetting=By.id("ddlADASetting");
-	public By MyAccountADASetting=By.id("ddlADASetting");
-	public By MyAccountADASetting=By.id("ddlADASetting");
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public By MyAccountAddAQuestion=By.xpath("//button[contains(text(),'Add a Question')]");
+	public By MyAccountDeleteButton(String questionNumber) {	
+	return By.id("//select[@id='ddlquestion_"+questionNumber+"']/parent::div/parent::div/div[2]/i");
+	}
+	public By MyAccountGetSecurityQuestionCount=By.xpath("//label[contains(text(),'You must select a minimum of')]");
+	public By MyAccountSecurityQuestionsAnswered=By.xpath("//select[@name='ddlQuestion']");
+	public By MyAccountSaveAccount=By.id("btnUpdate");
+		
 	
 	
 	

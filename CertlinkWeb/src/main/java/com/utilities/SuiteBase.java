@@ -73,7 +73,7 @@ public class SuiteBase {
 		System.setProperty("webdriver.chrome.driver", "D:/Jayesh Hinge/chromedriver.exe");
 		chdriver = new ChromeDriver();
 		chdriver.manage().window().maximize();
-		chwait = new WebDriverWait(chdriver, 30);
+		chwait = new WebDriverWait(chdriver, 60);
 		chfwait = new FluentWait<WebDriver>(chdriver).pollingEvery(Duration.ofSeconds(5))
 				.withMessage("Looking for Logout");
 
