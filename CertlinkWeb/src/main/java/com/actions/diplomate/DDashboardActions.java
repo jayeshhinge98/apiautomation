@@ -1,11 +1,15 @@
 package com.actions.diplomate;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -16,6 +20,10 @@ import org.testng.Assert;
 import com.actions.CommonActions;
 import com.uielements.diplomate.DDashboardUI;
 import com.utilities.TestUtitlies;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gargoylesoftware.htmlunit.javascript.host.fetch.Response;
 
 public class DDashboardActions {
 
@@ -103,15 +111,24 @@ public class DDashboardActions {
 
 	}
 
-	public void UpdateMyAccountSettings(WebDriver driver, Connection con, String sql,WebDriverWait wait ) {
-		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.findElement(dd.MyAccountFirstName).getText().length() != 0;
-            }
-        });
-		
+	public void UpdateMyAccountSettings(WebDriver driver, Connection con, String sql, WebDriverWait wait)
+			throws JsonParseException, JsonMappingException, IOException {
 		ca.clickOnElement(driver, dd.DMyAccountUI);
+
+		String str = driver.findElement(By.xpath("/html/body/script[25]")).getAttribute("innerHTML").toString();
+		String str2 = str.substring(str.indexOf("_activeUserEntity = JSON.parse(JSON.stringify(") + 46,
+				str.indexOf("var _activeUserPermissions")).trim();
+		Map<String, Object> response = new ObjectMapper().readValue(str2.substring(0, str2.length() - 3),
+				HashMap.class);
+		System.out.println("First Name is :" + response.get("FirstName").toString());
+		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver d) {
+				return response.get("FirstName").toString().length() != 0;
+			}
+		});
 		String middle = tu.randomAlphabetic(5);
+		// System.out.println("Text: " +
+		// driver.findElement(dd.MyAccountMiddleName).getText());
 		wait.until(ExpectedConditions.elementToBeClickable(dd.MyAccountMiddleName));
 		ca.enterTextInTextField(driver, dd.MyAccountMiddleName, middle);
 		ca.clickOnElement(driver, dd.MyAccountSaveAccount);
@@ -126,12 +143,23 @@ public class DDashboardActions {
 		try {
 			Statement ps = con.createStatement();
 			ResultSet rs = ps.executeQuery(sql);
-			// rs.getString("Middle");
-			middleNameDB = rs.toString();
+			while (rs.next())
+				middleNameDB = rs.getString("Middle");
+			// middleNameDB = rs.toString();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		Assert.assertEquals(middleNameDB, middle, "Value is not saved in DB");
+	}
+
+	public void PasswordResetMyAccountSettings(WebDriver chdriver, Connection con, String oldPassword,String newPassword,
+			WebDriverWait chwait) {
+		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPassword);
+		ca.enterTextInTextField(chdriver,dd.MyAccountResetPasswordPopupOldPassword, oldPassword);
+		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupNewPassword, newPassword);
+		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupConfirmPassword, newPassword);
+		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPasswordPopupSave);
+		//if(dd.reset)
 	}
 
 }

@@ -1,12 +1,13 @@
 package com.certlink;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.io.IOException;
+
 import org.testng.annotations.Test;
 
 import com.actions.diplomate.DDashboardActions;
 import com.actions.diplomate.DLoginAction;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.utilities.SuiteBase;
 
 public class DiplomateDashboard extends SuiteBase {
@@ -27,7 +28,7 @@ public class DiplomateDashboard extends SuiteBase {
 	}
 
 	@Test(priority = 1)
-	public void verifyUserAccountUpdate() {
+	public void verifyUserAccountUpdate() throws Exception, JsonMappingException, IOException {
 		dla.DiplomateLogin(chdriver, "prod_jayesh@sharklasers.com", "Abcd1234#", "valid");
 		dda.UpdateMyAccountSettings(chdriver, con,
 				"select i.Middle from Individual i inner join FIGUser f on i.IndividualUid=f.FIGUserUid where f.LoginName='prod_jayesh@sharklasers.com'",
@@ -36,4 +37,13 @@ public class DiplomateDashboard extends SuiteBase {
 
 	}
 
+	@Test(priority = 2)
+	public void verifyPasswordReset() throws Exception, JsonMappingException, IOException {
+		dla.DiplomateLogin(chdriver, "prod_jayesh@sharklasers.com", "Abcd1234#", "valid");
+		dda.PasswordResetMyAccountSettings(chdriver, con,
+				"select i.Middle from Individual i inner join FIGUser f on i.IndividualUid=f.FIGUserUid where f.LoginName='prod_jayesh@sharklasers.com'",
+				null, chwait);
+		dla.DiplomateLogout(chdriver, chwait);
+
+	}
 }
