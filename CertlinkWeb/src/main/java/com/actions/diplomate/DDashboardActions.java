@@ -8,28 +8,37 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.actions.CommonActions;
 import com.uielements.diplomate.DDashboardUI;
 import com.utilities.TestUtitlies;
+
+import okio.Timeout;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.javascript.host.fetch.Response;
+
+import com.google.common.base.Function;
 
 public class DDashboardActions {
 
 	DDashboardUI dd = new DDashboardUI();
 	CommonActions ca = new CommonActions();
 	TestUtitlies tu = new TestUtitlies();
+	DLoginAction dla=new DLoginAction();
 
 	public void Resources(WebDriver driver) {
 
@@ -120,16 +129,30 @@ public class DDashboardActions {
 				str.indexOf("var _activeUserPermissions")).trim();
 		Map<String, Object> response = new ObjectMapper().readValue(str2.substring(0, str2.length() - 3),
 				HashMap.class);
-		System.out.println("First Name is :" + response.get("FirstName").toString());
-		(new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+		
+		(new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver d) {
 				return response.get("FirstName").toString().length() != 0;
 			}
 		});
+		System.out.println("First Name is :" + response.get("FirstName").toString());
 		String middle = tu.randomAlphabetic(5);
 		// System.out.println("Text: " +
-		// driver.findElement(dd.MyAccountMiddleName).getText());
-		wait.until(ExpectedConditions.elementToBeClickable(dd.MyAccountMiddleName));
+		// driver.findElement(dd.MyAccountMiddleName).getText());		
+		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)				 
+			        .withTimeout(120, TimeUnit.SECONDS)
+			        .pollingEvery(5, TimeUnit.SECONDS)
+			        .ignoring(NoSuchElementException.class);
+		
+		WebElement foo = wait.until(new Function<WebDriver, WebElement>() 
+		{
+		  public WebElement apply(WebDriver driver) {
+		  return driver.findElement(dd.MyAccountMiddleName);
+		}
+		});
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(dd.MyAccountMiddleName));
 		ca.enterTextInTextField(driver, dd.MyAccountMiddleName, middle);
 		ca.clickOnElement(driver, dd.MyAccountSaveAccount);
 		if (ca.getTextForLocator(driver, dd.MyAccountSaveSuccessMessage).equals("Profile saved.")) {
@@ -151,15 +174,18 @@ public class DDashboardActions {
 		}
 		Assert.assertEquals(middleNameDB, middle, "Value is not saved in DB");
 	}
+	
 
-	public void PasswordResetMyAccountSettings(WebDriver chdriver, Connection con, String oldPassword,String newPassword,
-			WebDriverWait chwait) {
+	public void PasswordResetMyAccountSettings(WebDriver chdriver, WebDriverWait wait,String username, String oldPassword, String newPassword) {
+		wait.until(ExpectedConditions.elementToBeSelected(dd.MyAccountbtnResetPassword));
 		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPassword);
 		ca.enterTextInTextField(chdriver,dd.MyAccountResetPasswordPopupOldPassword, oldPassword);
 		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupNewPassword, newPassword);
 		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupConfirmPassword, newPassword);
 		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPasswordPopupSave);
-		//if(dd.reset)
+		Assert.assertEquals( ca.getTextForLocator(chdriver, dd.MyAccountSaveSuccessMessage), "Password changed.");
+		//dla.DiplomateLogout(chdriver, chwait);
+		//dla.DiplomateLogin(chdriver, username, newPassword, "valid");	
 	}
 
 }

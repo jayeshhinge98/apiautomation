@@ -33,17 +33,15 @@ public class DiplomateDashboard extends SuiteBase {
 		dda.UpdateMyAccountSettings(chdriver, con,
 				"select i.Middle from Individual i inner join FIGUser f on i.IndividualUid=f.FIGUserUid where f.LoginName='prod_jayesh@sharklasers.com'",
 				chwait);
-		dla.DiplomateLogout(chdriver, chwait);
+		//dla.DiplomateLogout(chdriver, chwait);
 
 	}
 
 	@Test(priority = 2)
 	public void verifyPasswordReset() throws Exception, JsonMappingException, IOException {
-		dla.DiplomateLogin(chdriver, "prod_jayesh@sharklasers.com", "Abcd1234#", "valid");
-		dda.PasswordResetMyAccountSettings(chdriver, con,
-				"select i.Middle from Individual i inner join FIGUser f on i.IndividualUid=f.FIGUserUid where f.LoginName='prod_jayesh@sharklasers.com'",
-				null, chwait);
-		dla.DiplomateLogout(chdriver, chwait);
+		//dla.DiplomateLogin(chdriver, "prod_jayesh@sharklasers.com", "Abcd1234#", "valid");
+		dda.PasswordResetMyAccountSettings(chdriver,chwait,"prod_jayesh@sharklasers.com","Abcd1234#","Abcd1234#");
+		
 
 	}
 }

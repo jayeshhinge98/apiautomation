@@ -6,8 +6,11 @@
       <class name="com.certlink.DiplomateDashboard">
         <methods>
           <include name="verifyUserAccountUpdate"/>
+          <include name="reports"/>
           <include name="setUp"/>
+          <include name="reportsEnd"/>
           <include name="cleanUp"/>
+          <include name="verifyPasswordReset"/>
         </methods>
       </class> <!-- com.certlink.DiplomateDashboard -->
     </classes>

@@ -67,6 +67,7 @@ public class DDashboardUI {
 	public By MyAccountResetPasswordPopupNewPasswordError=By.id("PasswordNewError");	
 	public By MyAccountResetPasswordPopupConfirmPasswordError=By.id("ConfirmPasswordError");
 	public By MyAccountSaveSuccessMessage=By.xpath("//div[@class='notifyjs-metro-base notifyjs-metro-success']/div[2]/div[2]");	
+	
 	//*[@class='notifyjs-metro-base notifyjs-metro-success']
 	public By MyAccountPhoneNo=By.id("txtPhoneNo");
 	public By MyAccountPreferedContactEmail=By.id("//input[@id='rdoEmail' and @name='PreferedContact']");
