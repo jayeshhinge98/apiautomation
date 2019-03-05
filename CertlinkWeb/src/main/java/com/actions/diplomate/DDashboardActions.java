@@ -11,34 +11,31 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.actions.CommonActions;
-import com.uielements.diplomate.DDashboardUI;
-import com.utilities.TestUtitlies;
-
-import okio.Timeout;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gargoylesoftware.htmlunit.javascript.host.fetch.Response;
-
-import com.google.common.base.Function;
+import com.uielements.diplomate.DDashboardUI;
+import com.utilities.TestUtitlies;
 
 public class DDashboardActions {
 
 	DDashboardUI dd = new DDashboardUI();
 	CommonActions ca = new CommonActions();
 	TestUtitlies tu = new TestUtitlies();
-	DLoginAction dla=new DLoginAction();
+	DLoginAction dla = new DLoginAction();
 
 	public void Resources(WebDriver driver) {
 
@@ -121,15 +118,16 @@ public class DDashboardActions {
 	}
 
 	public void UpdateMyAccountSettings(WebDriver driver, Connection con, String sql, WebDriverWait wait)
-			throws JsonParseException, JsonMappingException, IOException {
+			throws JsonParseException, JsonMappingException, IOException {		
 		ca.clickOnElement(driver, dd.DMyAccountUI);
-
+		new WebDriverWait(driver, 60).until(
+		          webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 		String str = driver.findElement(By.xpath("/html/body/script[25]")).getAttribute("innerHTML").toString();
 		String str2 = str.substring(str.indexOf("_activeUserEntity = JSON.parse(JSON.stringify(") + 46,
 				str.indexOf("var _activeUserPermissions")).trim();
 		Map<String, Object> response = new ObjectMapper().readValue(str2.substring(0, str2.length() - 3),
 				HashMap.class);
-		
+
 		(new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver d) {
 				return response.get("FirstName").toString().length() != 0;
@@ -137,23 +135,16 @@ public class DDashboardActions {
 		});
 		System.out.println("First Name is :" + response.get("FirstName").toString());
 		String middle = tu.randomAlphabetic(5);
-		// System.out.println("Text: " +
-		// driver.findElement(dd.MyAccountMiddleName).getText());		
-		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)				 
-			        .withTimeout(120, TimeUnit.SECONDS)
-			        .pollingEvery(5, TimeUnit.SECONDS)
-			        .ignoring(NoSuchElementException.class);
-		
-		WebElement foo = wait.until(new Function<WebDriver, WebElement>() 
-		{
-		  public WebElement apply(WebDriver driver) {
-		  return driver.findElement(dd.MyAccountMiddleName);
-		}
-		});
-		
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(dd.MyAccountMiddleName));
-		ca.enterTextInTextField(driver, dd.MyAccountMiddleName, middle);
+		Wait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(60, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+		fwait.until(ExpectedConditions.presenceOfElementLocated(dd.MyAccountMiddleName));
+		System.out.println("After fluent wait");
+		Actions a = new Actions(driver);
+		a.moveToElement(driver.findElement(dd.MyAccountMiddleName)).click().build().perform();
+		// ca.enterTextInTextField(driver, dd.MyAccountMiddleName, middle);
+		driver.findElement(dd.MyAccountMiddleName).clear();
+		driver.findElement(dd.MyAccountMiddleName).sendKeys(middle);
+		wait.until(ExpectedConditions.elementToBeClickable(dd.MyAccountSaveAccount));
 		ca.clickOnElement(driver, dd.MyAccountSaveAccount);
 		if (ca.getTextForLocator(driver, dd.MyAccountSaveSuccessMessage).equals("Profile saved.")) {
 			System.out.println("Profile saved success message displays on UI");
@@ -173,19 +164,46 @@ public class DDashboardActions {
 			e.printStackTrace();
 		}
 		Assert.assertEquals(middleNameDB, middle, "Value is not saved in DB");
+		// wait the element "Add Item" to become stale
+		wait.until(ExpectedConditions.stalenessOf(driver.findElement(dd.MyAccountSaveSuccessMessage)));
+		System.out.println("Success");
 	}
-	
 
-	public void PasswordResetMyAccountSettings(WebDriver chdriver, WebDriverWait wait,String username, String oldPassword, String newPassword) {
-		wait.until(ExpectedConditions.elementToBeSelected(dd.MyAccountbtnResetPassword));
-		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPassword);
-		ca.enterTextInTextField(chdriver,dd.MyAccountResetPasswordPopupOldPassword, oldPassword);
-		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupNewPassword, newPassword);
-		ca.enterTextInTextField(chdriver, dd.MyAccountResetPasswordPopupConfirmPassword, newPassword);
-		ca.clickOnElement(chdriver, dd.MyAccountbtnResetPasswordPopupSave);
-		Assert.assertEquals( ca.getTextForLocator(chdriver, dd.MyAccountSaveSuccessMessage), "Password changed.");
-		//dla.DiplomateLogout(chdriver, chwait);
-		//dla.DiplomateLogin(chdriver, username, newPassword, "valid");	
+	public void PasswordResetMyAccountSettings(WebDriver driver, WebDriverWait wait, String username,
+			String oldPassword, String newPassword) {
+		Actions a = new Actions(driver);
+		driver.navigate().refresh();
+		new WebDriverWait(driver, 60).until(
+		          webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+		System.out.println("After wait 2");
+		String str = driver.findElement(By.xpath("/html/body/script[25]")).getAttribute("innerHTML").toString();
+		String str2 = str.substring(str.indexOf("_activeUserEntity = JSON.parse(JSON.stringify(") + 46,
+				str.indexOf("var _activeUserPermissions")).trim();
+		try {
+		Map<String, Object> response = new ObjectMapper().readValue(str2.substring(0, str2.length() - 3),
+				HashMap.class);
+
+		(new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver d) {
+				return response.get("FirstName").toString().length() != 0;
+			}
+		});
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		Wait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(60, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+		fwait.until(ExpectedConditions.presenceOfElementLocated(dd.MyAccountbtnResetPassword));
+		System.out.println("After wait 1");
+		a.moveToElement(driver.findElement(dd.MyAccountbtnResetPassword)).click().build().perform();
+		//ca.clickOnElement(driver, dd.MyAccountbtnResetPassword);
+		driver.findElement(dd.MyAccountResetPasswordPopupOldPassword).sendKeys(oldPassword);
+		driver.findElement(dd.MyAccountResetPasswordPopupNewPassword).sendKeys(newPassword);
+		driver.findElement(dd.MyAccountResetPasswordPopupConfirmPassword).sendKeys(newPassword);
+		ca.clickOnElement(driver, dd.MyAccountbtnResetPasswordPopupSave);
+		Assert.assertEquals(ca.getTextForLocator(driver, dd.MyAccountSaveSuccessMessage), "Password changed.");
+		// dla.DiplomateLogout(driver, chwait);
+		// dla.DiplomateLogin(driver, username, newPassword, "valid");
 	}
 
 }
