@@ -206,4 +206,10 @@ public class DDashboardActions {
 		// dla.DiplomateLogin(driver, username, newPassword, "valid");
 	}
 
+	public void Message(WebDriver driver) {
+	
+	}
+
+	
+	
 }

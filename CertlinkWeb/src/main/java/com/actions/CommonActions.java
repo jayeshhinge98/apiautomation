@@ -170,7 +170,7 @@ public class CommonActions {
 			Assert.fail("Textfield " + by.toString() + " not present.");
 		}
 	}
-
+ 
 	public void enterTextInTextField(WebDriver driver, By by, String keysToSend) {
 		if (isElementPresent(driver, by)) {
 			clickOnElement(driver, by);
