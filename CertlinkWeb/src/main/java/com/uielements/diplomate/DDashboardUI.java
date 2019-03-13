@@ -124,17 +124,32 @@ public class DDashboardUI {
 	public By MessageHistoryAllMessage = By.cssSelector("#btnall-readmsg-Row");
 	public By MessageHistoryAllUnreadMessage = By.cssSelector("#btnall-unreadmsg-Row");
 
+	// Last will be start from 2
 	public By MessageHistoryViewDetailsButton(String last) {
 		return By.xpath("//div[" + last + "]/div[3]/span/a[contains(text(),'View Details')]");
 	}
+
+	public By MessageHistorySubjectOfMessage(String last) {
+		return By.xpath(
+				"//div[" + last + "]/div[3]/span/a[contains(text(),'View Details')]//ancestor::div[2]/div[2]/span[2]");
+	}
+
+	public By MessageHistoryDateOfMessage(String last) {
+		return By.xpath(
+				"//div[" + last + "]/div[3]/span/a[contains(text(),'View Details')]//ancestor::div[2]/div[4]/span[2]");
+	}
+	
+	public By MessageHistorySubjectAndDateOnViewDetailsPopUp=By.xpath("//*[@id='view-message-modal']/div/div/div[1]/h3");
+
 	// div[@class='history-table history-table-5-col']/div[2]/div[3]/span/a
 
 	// allows to find xpath for checkbox with number position 1-10
 	public By MessageHistoryCheckBox(String number) {
-		return By.xpath("//div[@class='history-table-row row']["+number+"]/div/div/input[@type='checkbox']");
+		return By.xpath("//div[@class='history-table-row row'][" + number + "]/div/div/input[@type='checkbox']");
 	}
-	public By MessageHistoryViewDetails(String number) {
-		return By.xpath("//div[@class='history-table history-table-5-col']/div["+number+"]/div[3]/span/a");
-	}
+
+
+	// get attribute: data-message-count
+	public By MessageHistoryBurgerCount = By.xpath("//div/span/span[@class='icon-fonts icon-icon-messages']");
 
 }

@@ -2,6 +2,10 @@ package com.actions;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Sheet;
@@ -208,4 +212,23 @@ public class CommonActions {
 	public String getAttributeValue(WebDriver driver,By by, String attributeName) {
 		return driver.findElement(by).getAttribute(attributeName);
 	} 
+	
+	public String returnDBData(Connection con,String sqlquery, String columnName)
+	{
+		String result=null;
+		try {
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sqlquery);
+			
+			while(rs.next()) {
+				result=rs.getString(columnName);	
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 }
