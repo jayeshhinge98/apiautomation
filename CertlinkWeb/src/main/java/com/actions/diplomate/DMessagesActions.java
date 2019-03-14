@@ -150,4 +150,14 @@ public class DMessagesActions {
 		}
 
 	}
+
+	public void Pagination(WebDriver driver, WebDriverWait wait) {
+	
+		if(Integer.parseInt(getAllMessageCount(driver))<10) {
+			System.out.println("No Pagination available as count of messages is less than equal to 10");
+		}else{
+			
+		}
+		
+	}
 }

@@ -75,6 +75,9 @@ public class DiplomateMessages extends SuiteBase {
 	public void verifyUserAbleToMarkAsUnRead() {
 		dma.UserAbleToMarkAsUnRead(chdriver, "2", chwait);
 	}
-
+	@Test(priority = 9)
+	public void verifyPagination() {
+		dma.Pagination(chdriver, chwait);
+	}
 
 }
