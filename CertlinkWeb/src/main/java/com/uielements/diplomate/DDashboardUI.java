@@ -138,8 +138,9 @@ public class DDashboardUI {
 		return By.xpath(
 				"//div[" + last + "]/div[3]/span/a[contains(text(),'View Details')]//ancestor::div[2]/div[4]/span[2]");
 	}
-	
-	public By MessageHistorySubjectAndDateOnViewDetailsPopUp=By.xpath("//*[@id='view-message-modal']/div/div/div[1]/h3");
+
+	public By MessageHistorySubjectAndDateOnViewDetailsPopUp = By
+			.xpath("//*[@id='view-message-modal']/div/div/div[1]/h3");
 
 	// div[@class='history-table history-table-5-col']/div[2]/div[3]/span/a
 
@@ -148,8 +149,13 @@ public class DDashboardUI {
 		return By.xpath("//div[@class='history-table-row row'][" + number + "]/div/div/input[@type='checkbox']");
 	}
 
-
 	// get attribute: data-message-count
 	public By MessageHistoryBurgerCount = By.xpath("//div/span/span[@class='icon-fonts icon-icon-messages']");
-
+	public By MessageHistoryViewDetailsPopUpCloseButton = By
+			.cssSelector("#view-message-modal > div > div > div.modal-header > button > span > span.path3");
+			
+	public By MessageHistoryMarkAsUnreadButton=By.cssSelector("#btn-mark-unread > div");
+	public By MessageHistoryMarkAsReadButton=By.cssSelector("#btn-mark-read > div");
+	
+	
 }

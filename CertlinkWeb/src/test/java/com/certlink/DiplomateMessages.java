@@ -60,11 +60,21 @@ public class DiplomateMessages extends SuiteBase {
 	public void verifyAllMessageTabSelected() {
 		dma.AllMessageTabSelected(chdriver);
 	}
-	
+
 	@Test(priority = 6)
 	public void verifyDetailsOfMessage() {
-		dma.detailsOfMessage(chdriver);
-		dma.markMessageUnread(chdriver);
+		dma.detailsOfMessage(chdriver, "2", chwait);
 	}
 	
+	@Test(priority = 7)
+	public void verifyUserAbleToMarkAsRead() {
+		dma.UserAbleToMarkAsRead(chdriver, "2", chwait);
+	}
+
+	@Test(priority = 8)
+	public void verifyUserAbleToMarkAsUnRead() {
+		dma.UserAbleToMarkAsUnRead(chdriver, "2", chwait);
+	}
+
+
 }
