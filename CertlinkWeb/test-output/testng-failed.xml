@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.certlink.DiplomateDashboard">
+      <class name="com.certlink.DiplomateMessages">
         <methods>
-          <include name="verifyUserAccountUpdate"/>
           <include name="reports"/>
           <include name="setUp"/>
           <include name="reportsEnd"/>
           <include name="cleanUp"/>
-          <include name="verifyPasswordReset"/>
+          <include name="verifyUserAbleToMarkAsRead"/>
+          <include name="verifyUserAbleToMarkAsUnRead"/>
         </methods>
-      </class> <!-- com.certlink.DiplomateDashboard -->
+      </class> <!-- com.certlink.DiplomateMessages -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
