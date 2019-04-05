@@ -3,16 +3,17 @@ package com.actions.diplomate;
 import static org.testng.Assert.assertEquals;
 
 import java.sql.Connection;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -254,8 +255,9 @@ public class DMessagesActions {
 
 	public void dateFilter(WebDriver driver, WebDriverWait wait) {
 		ca.clickOnElement(driver, dd.MessageHistoryFilterOptionsExpand);
-		//ca.clickOnElement(driver, dd);
-		
+		ca.clickOnElement(driver, dd.MessageHistoryFilterByDateStartDate);
+		Select s=new Select(driver.findElement(dd.MessageHistoryMonthSelector));
+		s.selectByValue("");
 	}
 
 	public void searchFunctionality(WebDriver chdriver, WebDriverWait chwait) {

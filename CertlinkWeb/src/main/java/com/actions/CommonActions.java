@@ -19,6 +19,16 @@ import org.testng.Assert;
 
 public class CommonActions {
 
+	public static void selectFromDropDownUsingValue(WebDriver driver,String loc,String selectType) {
+		Select 
+		switch(selectType) {
+		case "value": 
+			
+		}
+		
+	}
+		
+	
 	public static String sendKeys(WebDriver driver, String strLocType, String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":

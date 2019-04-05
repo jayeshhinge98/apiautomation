@@ -95,11 +95,13 @@ public class DDashboardUI {
 			.xpath("//span[@class='text-container']/preceding-sibling::span/span[1]");
 	public By MessageHistoryFilterOptionsCollapse = By
 			.xpath("//span[@class='text-container']/preceding-sibling::span/span[2]");
+	public By MessageHistoryClearFiltersSearch = By.xpath("//a[text()='Clear Filters/Search']");
+	public By MessageHistoryReceivedDate = By.xpath("//*[@id='sentdate']/parent::span/label");
+
 	public By MessageHistoryFilterByDateStartDate = By.id("txt-startdate");
 	public By MessageHistoryFilterByDateEndDate = By.id("txt-enddate");
-	public By MessageHistoryClearFiltersSearch = By.xpath("//a[text()='Clear Filters/Search']");
-	public By MessageHistoryReceivedDate =  By.xpath("//*[@id='sentdate']/parent::span/label");
-	public By MessageHistoryMonthSelector= By.xpath("");
+	public By MessageHistoryMonthSelector = By.xpath("//div[15]/div[1]/div[2]/table/thead/tr[1]/th[2]/select[1]");
+	public By MessageHistoryYearSelector = By.xpath("//div[15]/div[1]/div[2]/table/thead/tr[1]/th[2]/select[2]");	
 	
 	public By MessageHistoryRead = By.xpath("//*[@id='read']/parent::span/label");
 	public By MessageHistoryUnread = By.xpath("//*[@id='unread']/parent::span/label");
@@ -118,14 +120,16 @@ public class DDashboardUI {
 	// getAttribute("class")
 	public By MessageHistoryPaginationPrev = By.xpath("//*[@id='light-pagination']/ul/li[1]");
 	public By MessageHistoryPaginationPrevClass = By.xpath("//*[@id='light-pagination']/ul/li[1]/a");
+
 	public By MessageHistoryPaginationNext(int last) {
 		return By.xpath("//*[@id='light-pagination']/ul/li[" + last + "]/a");
 	}
+
 	public By MessageHistoryPaginationNextClass(int last) {
 		return By.xpath("//*[@id='light-pagination']/ul/li[" + last + "]/a");
 	}
-	public By MessageHistoryGetCurrentPageNumber = By
-			.xpath("//*[@id='light-pagination']/ul/li[@class='active']/span");
+
+	public By MessageHistoryGetCurrentPageNumber = By.xpath("//*[@id='light-pagination']/ul/li[@class='active']/span");
 	public By MessageHistoryAllMessage = By.cssSelector("#btnall-readmsg-Row");
 	public By MessageHistoryAllUnreadMessage = By.cssSelector("#btnall-unreadmsg-Row");
 
@@ -158,9 +162,9 @@ public class DDashboardUI {
 	public By MessageHistoryBurgerCount = By.xpath("//div/span/span[@class='icon-fonts icon-icon-messages']");
 	public By MessageHistoryViewDetailsPopUpCloseButton = By
 			.xpath("//*[@id='view-message-modal']/div/div/div[1]/button");
-			// and @class='modal fade in'
-	public By MessageHistoryMarkAsUnreadButton=By.cssSelector("#btn-mark-unread > div");
-	public By MessageHistoryMarkAsReadButton=By.cssSelector("#btn-mark-read > div");
-	
-	//*[@id='view-message-modal']/div/div/div[1]/button/span/span[3]
+	// and @class='modal fade in'
+	public By MessageHistoryMarkAsUnreadButton = By.cssSelector("#btn-mark-unread > div");
+	public By MessageHistoryMarkAsReadButton = By.cssSelector("#btn-mark-read > div");
+
+	// *[@id='view-message-modal']/div/div/div[1]/button/span/span[3]
 }
