@@ -2,6 +2,10 @@ package com.actions;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,6 +19,16 @@ import org.testng.Assert;
 
 public class CommonActions {
 
+	public static void selectFromDropDownUsingValue(WebDriver driver,String loc,String selectType) {
+		Select 
+		switch(selectType) {
+		case "value": 
+			
+		}
+		
+	}
+		
+	
 	public static String sendKeys(WebDriver driver, String strLocType, String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":
@@ -170,7 +184,7 @@ public class CommonActions {
 			Assert.fail("Textfield " + by.toString() + " not present.");
 		}
 	}
-
+ 
 	public void enterTextInTextField(WebDriver driver, By by, String keysToSend) {
 		if (isElementPresent(driver, by)) {
 			clickOnElement(driver, by);
@@ -201,5 +215,30 @@ public class CommonActions {
 
 		return data;
 	}
-
+	
+	public String getTextForLocator(WebDriver driver,By by) {
+		return driver.findElement(by).getText();
+	} 
+	public String getAttributeValue(WebDriver driver,By by, String attributeName) {
+		return driver.findElement(by).getAttribute(attributeName);
+	} 
+	
+	public String returnDBData(Connection con,String sqlquery, String columnName)
+	{
+		String result=null;
+		try {
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sqlquery);
+			
+			while(rs.next()) {
+				result=rs.getString(columnName);	
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 }

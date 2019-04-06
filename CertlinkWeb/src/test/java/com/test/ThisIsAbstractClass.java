@@ -6,5 +6,6 @@ public abstract class ThisIsAbstractClass {
 	public void print() {
 		System.out.println("This is Abstract class method : Instance method.");
 	}
+	public abstract void addition();
 
 }

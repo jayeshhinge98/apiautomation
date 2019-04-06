@@ -26,6 +26,4 @@ public class Login extends SuiteBase {
 		la.DiplomateLogout(chdriver, chwait);
 	}
 	
-	
-
 }
