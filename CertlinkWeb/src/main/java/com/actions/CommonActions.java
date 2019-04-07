@@ -15,21 +15,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class CommonActions {
 
-	public static void selectFromDropDownUsingValue(WebDriver driver,String loc,String selectType) {
-		Select 
-		switch(selectType) {
-		case "value": 
-			
+	public static void selectFromDropDownUsingValue(WebDriver driver, By loc,
+			String selectType, String value) {
+		Select select = new Select(driver.findElement(loc));
+
+		switch (selectType) {
+		case "selectByValue":
+			select.selectByValue(value);
+			break;
+		case "selectByIndex":
+			select.selectByIndex(Integer.parseInt(value));
+			break;
+		case "selectByVisibleText":
+			select.selectByVisibleText(value);
+			break;
+		default:
+			System.out.println("Please provide the selector");
 		}
-		
 	}
-		
-	
-	public static String sendKeys(WebDriver driver, String strLocType, String strLocValue, String param1) {
+
+	public static String sendKeys(WebDriver driver, String strLocType,
+			String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":
 			driver.findElement(By.id(strLocValue)).clear();
@@ -57,7 +68,8 @@ public class CommonActions {
 
 	}
 
-	public static String click(WebDriver driver, String strLocType, String strLocValue,String param1) {
+	public static String click(WebDriver driver, String strLocType,
+			String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":
 			driver.findElement(By.id(strLocValue)).click();
@@ -135,8 +147,10 @@ public class CommonActions {
 
 	public void clickOnElementByMouseHover(WebDriver driver, By by) {
 		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).click().build().perform();
-			System.out.println("Element " + by.toString() + " clicked by mouse hover.");
+			new Actions(driver).moveToElement(driver.findElement(by)).click()
+					.build().perform();
+			System.out.println("Element " + by.toString()
+					+ " clicked by mouse hover.");
 			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
 
 		} else {
@@ -148,8 +162,10 @@ public class CommonActions {
 
 	public void mouseHoverOnElement(WebDriver driver, By by) {
 		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).build().perform();
-			// System.out.println("Element " + by.toString() + " clicked by mouse hover.");
+			new Actions(driver).moveToElement(driver.findElement(by)).build()
+					.perform();
+			// System.out.println("Element " + by.toString() +
+			// " clicked by mouse hover.");
 			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
 
 		} else {
@@ -184,13 +200,14 @@ public class CommonActions {
 			Assert.fail("Textfield " + by.toString() + " not present.");
 		}
 	}
- 
+
 	public void enterTextInTextField(WebDriver driver, By by, String keysToSend) {
 		if (isElementPresent(driver, by)) {
 			clickOnElement(driver, by);
 			driver.findElement(by).clear();
 			driver.findElement(by).sendKeys(keysToSend);
-			System.out.println("Entered text in Textfield " + by.toString() + ".");
+			System.out.println("Entered text in Textfield " + by.toString()
+					+ ".");
 			// logger.log(LogStatus.INFO,"Entered text in Textfield "+by.toString()+".");
 		} else {
 			System.out.println("Textfield " + by.toString() + " not present.");
@@ -199,14 +216,15 @@ public class CommonActions {
 		}
 	}
 
-	public static String[][] getExcelData(String sheetName) throws Exception, IOException {
+	public static String[][] getExcelData(String sheetName) throws Exception,
+			IOException {
 		String data[][] = null;
 		File file = new File("");
 		Workbook wb = new XSSFWorkbook(file);
 		Sheet sheet = wb.getSheet(sheetName);
 		int numberOfRows = sheet.getLastRowNum();
 		int numberofCells = sheet.getRow(0).getPhysicalNumberOfCells();
-		for (int i = 0; i < numberOfRows ; i++) {
+		for (int i = 0; i < numberOfRows; i++) {
 			for (int j = 0; j < numberofCells; j++) {
 				System.out.print(sheet.getRow(i).getCell(j) + "\t");
 			}
@@ -215,30 +233,32 @@ public class CommonActions {
 
 		return data;
 	}
-	
-	public String getTextForLocator(WebDriver driver,By by) {
+
+	public String getTextForLocator(WebDriver driver, By by) {
 		return driver.findElement(by).getText();
-	} 
-	public String getAttributeValue(WebDriver driver,By by, String attributeName) {
+	}
+
+	public String getAttributeValue(WebDriver driver, By by,
+			String attributeName) {
 		return driver.findElement(by).getAttribute(attributeName);
-	} 
-	
-	public String returnDBData(Connection con,String sqlquery, String columnName)
-	{
-		String result=null;
+	}
+
+	public String returnDBData(Connection con, String sqlquery,
+			String columnName) {
+		String result = null;
 		try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(sqlquery);
-			
-			while(rs.next()) {
-				result=rs.getString(columnName);	
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sqlquery);
+
+			while (rs.next()) {
+				result = rs.getString(columnName);
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return result;
-		
+
 	}
 }

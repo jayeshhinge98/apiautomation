@@ -24,17 +24,17 @@ public class demo2 extends Student{
 	//Student s=new Student();
 	public static void main(String[] args) throws IOException, Exception {
 		
-		ThisIsAbstractClass ac=new ThisIsAbstractClass() {
-			
-			@Override
-			public void abstract1() {
-				System.out.println("This is Abstract method");
-				
-			}
-		};
-		ac.abstract1();
-		ac.print();
-		
+//		ThisIsAbstractClass ac=new ThisIsAbstractClass() {
+//			
+//			@Override
+//			public void abstract1() {
+//				System.out.println("This is Abstract method");
+//				
+//			}
+//		};
+//		ac.abstract1();
+//		ac.print();
+//		
 		
 	}
 	public static void test1() {
