@@ -33,7 +33,7 @@ public class APITestAllRequestUsingLocalDB {
 	// To Start JSON type cmd = json-server --watch db.json
 
 	// Get Request : http://localhost:3000/posts
-	 @Test(priority=1)
+	// @Test(priority=1)
 	public void test_01() {
 		Response resp = when().get("http://localhost:3000/posts");
 		System.out.println("Get response is =>" + resp.asString());
@@ -41,13 +41,14 @@ public class APITestAllRequestUsingLocalDB {
 	}
 
 	// POST Request(create new entry/add new entries to resources)
-	// @Test(priority=2)
+ @Test(priority=2)
 	public void test_02() {
 		Response resp = given()
-				.body("{\"id\": \"2\", \"title\": \"title 2\",\"author\": \"sample_author\"}")
+				.body("{\"id\": \"6\", \"title\": \"title 6\",\"author\": \"sample_author6\"}")
 				.when().contentType(ContentType.JSON)
 				.post("http://localhost:3000/posts");
 		System.out.println("POST response is =>" + resp.asString());
+		System.out.println(resp.getStatusCode());
 
 	}
 
@@ -86,7 +87,7 @@ public class APITestAllRequestUsingLocalDB {
 	}
 
 	// PATCH Request(Update only specific data, no need to pass all the parameters)
-	// @Test
+	 @Test
 	public void test_06() {
 		// PostData pd = new PostData();
 		// pd.setId(5);
