@@ -63,5 +63,11 @@ public class AboutStringSBufferSBuilder {
 		System.out.println("Address for the sdf2:"
 				+ Integer.toHexString(sbd2.hashCode()));
 
+		/*
+		 * Non synchronized(StringBuilder) -It is not-thread safe and can't be shared between
+		 * many threads without proper synchronization code. While,
+		 * Synchronized(StringBuffer)- It is thread-safe and can be shared with many threads.
+		 */
+
 	}
 }

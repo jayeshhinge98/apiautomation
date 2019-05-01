@@ -15,7 +15,7 @@ public class ReverseString {
 		//2. Using StringBuffer
 		StringBuffer sb=new StringBuffer(s);
 		System.out.println("Reverse of string using String Buffer:" + sb.reverse());
-		
+	
 		//3. Using StringBuilder
 		StringBuilder sb1=new StringBuilder(s);
 		System.out.println("Reverse of string using String Builder:" + sb1.reverse());
