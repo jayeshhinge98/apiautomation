@@ -83,7 +83,7 @@ public class DiplomateMessages extends SuiteBase {
 	}
 	@Test(priority =10,enabled=true)
 	public void verifyFilter() {
-		dma.dateFilter(chdriver, chwait);
+		dma.dateFilter(chdriver, chwait,con,"");
 		
 	}
 	@Test(priority =11,enabled=true)

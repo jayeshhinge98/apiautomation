@@ -20,8 +20,7 @@ import org.testng.Assert;
 
 public class CommonActions {
 
-	public static void selectFromDropDownUsingValue(WebDriver driver, By loc,
-			String selectType, String value) {
+	public static void selectFromDropDownUsingValue(WebDriver driver, By loc, String selectType, String value) {
 		Select select = new Select(driver.findElement(loc));
 
 		switch (selectType) {
@@ -39,8 +38,7 @@ public class CommonActions {
 		}
 	}
 
-	public static String sendKeys(WebDriver driver, String strLocType,
-			String strLocValue, String param1) {
+	public static String sendKeys(WebDriver driver, String strLocType, String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":
 			driver.findElement(By.id(strLocValue)).clear();
@@ -68,8 +66,7 @@ public class CommonActions {
 
 	}
 
-	public static String click(WebDriver driver, String strLocType,
-			String strLocValue, String param1) {
+	public static String click(WebDriver driver, String strLocType, String strLocValue, String param1) {
 		switch (strLocType) {
 		case "id":
 			driver.findElement(By.id(strLocValue)).click();
@@ -147,10 +144,8 @@ public class CommonActions {
 
 	public void clickOnElementByMouseHover(WebDriver driver, By by) {
 		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).click()
-					.build().perform();
-			System.out.println("Element " + by.toString()
-					+ " clicked by mouse hover.");
+			new Actions(driver).moveToElement(driver.findElement(by)).click().build().perform();
+			System.out.println("Element " + by.toString() + " clicked by mouse hover.");
 			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
 
 		} else {
@@ -162,8 +157,7 @@ public class CommonActions {
 
 	public void mouseHoverOnElement(WebDriver driver, By by) {
 		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).build()
-					.perform();
+			new Actions(driver).moveToElement(driver.findElement(by)).build().perform();
 			// System.out.println("Element " + by.toString() +
 			// " clicked by mouse hover.");
 			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
@@ -206,8 +200,7 @@ public class CommonActions {
 			clickOnElement(driver, by);
 			driver.findElement(by).clear();
 			driver.findElement(by).sendKeys(keysToSend);
-			System.out.println("Entered text in Textfield " + by.toString()
-					+ ".");
+			System.out.println("Entered text in Textfield " + by.toString() + ".");
 			// logger.log(LogStatus.INFO,"Entered text in Textfield "+by.toString()+".");
 		} else {
 			System.out.println("Textfield " + by.toString() + " not present.");
@@ -216,8 +209,7 @@ public class CommonActions {
 		}
 	}
 
-	public static String[][] getExcelData(String sheetName) throws Exception,
-			IOException {
+	public static String[][] getExcelData(String sheetName) throws Exception, IOException {
 		String data[][] = null;
 		File file = new File("");
 		Workbook wb = new XSSFWorkbook(file);
@@ -238,13 +230,11 @@ public class CommonActions {
 		return driver.findElement(by).getText();
 	}
 
-	public String getAttributeValue(WebDriver driver, By by,
-			String attributeName) {
+	public String getAttributeValue(WebDriver driver, By by, String attributeName) {
 		return driver.findElement(by).getAttribute(attributeName);
 	}
 
-	public String returnDBData(Connection con, String sqlquery,
-			String columnName) {
+	public String returnDBData(Connection con, String sqlquery, String columnName) {
 		String result = null;
 		try {
 			Statement st = con.createStatement();
