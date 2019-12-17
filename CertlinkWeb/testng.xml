@@ -7,6 +7,7 @@
       <class name="com.certlink.Login"/>
       <class name="com.utilities.SuiteBase"/>
       <class name="com.test.demo2"/>
+      <class name="com.certlink.AssessmentDesign"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

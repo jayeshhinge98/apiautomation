@@ -25,7 +25,6 @@ import org.testng.annotations.BeforeTest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class SuiteBase {
@@ -68,9 +67,7 @@ public class SuiteBase {
 		}
 		String fileName = getReportPath(reportFilepath);
 
-		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
-		htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
-		htmlReporter.config().setChartVisibilityOnOpen(true);
+		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);		
 		htmlReporter.config().setTheme(Theme.STANDARD);
 		htmlReporter.config().setDocumentTitle(reportFileName);
 		htmlReporter.config().setEncoding("utf-8");
@@ -125,7 +122,7 @@ public class SuiteBase {
 	}
 
 	public void setUpChrome() {
-		System.setProperty("webdriver.chrome.driver", "D:/Jayesh Hinge/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 		chdriver = new ChromeDriver();
 		chdriver.manage().window().maximize();
 		chwait = new WebDriverWait(chdriver, 60);

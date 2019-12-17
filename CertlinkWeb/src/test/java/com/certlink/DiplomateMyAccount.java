@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.utilities.SuiteBase;
 
-public class DiplomateDashboard extends SuiteBase {
+public class DiplomateMyAccount extends SuiteBase {
 	DLoginAction dla = new DLoginAction();
 	DDashboardActions dda = new DDashboardActions();
 

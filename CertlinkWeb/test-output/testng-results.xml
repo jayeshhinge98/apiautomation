@@ -1,255 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<testng-results ignored="0" total="4" passed="2" failed="1" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-04-01T11:10:27Z" name="Default suite" finished-at="2019-04-01T11:11:30Z" duration-ms="62603">
+  <suite started-at="2019-12-17T13:46:48Z" name="Default suite" finished-at="2019-12-17T13:46:59Z" duration-ms="11094">
     <groups>
     </groups>
-    <test started-at="2019-04-01T11:10:27Z" name="Default test" finished-at="2019-04-01T11:11:30Z" duration-ms="62603">
-      <class name="com.certlink.DiplomateMessages">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:27Z" name="setUp" finished-at="2019-04-01T11:10:38Z" duration-ms="10908" status="PASS">
+    <test started-at="2019-12-17T13:46:48Z" name="Default test" finished-at="2019-12-17T13:46:59Z" duration-ms="11094">
+      <class name="com.test.Selenium.ExtentReport1">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:48Z" name="beforetest" finished-at="2019-12-17T13:46:55Z" duration-ms="7466" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:38Z" name="reports" finished-at="2019-04-01T11:10:38Z" duration-ms="6" status="PASS">
+        </test-method> <!-- beforetest -->
+        <test-method signature="VerifySuccess()[pri:1, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:55Z" name="VerifySuccess" finished-at="2019-12-17T13:46:55Z" duration-ms="26" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifySuccess -->
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:55Z" name="getResult" finished-at="2019-12-17T13:46:55Z" duration-ms="19" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageCountOnBurgerMenu()]]>
+                <![CDATA[[TestResult name=VerifySuccess status=SUCCESS method=ExtentReport1.VerifySuccess()[pri:1, instance:com.test.Selenium.ExtentReport1@3f6f6701] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyUnreadMessageCountOnBurgerMenu()[pri:1, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:38Z" name="verifyUnreadMessageCountOnBurgerMenu" finished-at="2019-04-01T11:10:47Z" duration-ms="8826" status="PASS">
+        </test-method> <!-- getResult -->
+        <test-method signature="VerifyFail()[pri:2, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:55Z" name="VerifyFail" finished-at="2019-12-17T13:46:55Z" duration-ms="7" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[This test case VerifyFail is failed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: This test case VerifyFail is failed
+at org.testng.Assert.fail(Assert.java:96)
+at com.test.Selenium.ExtentReport1.VerifyFail(ExtentReport1.java:91)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyUnreadMessageCountOnBurgerMenu -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:47Z" name="reportsEnd" finished-at="2019-04-01T11:10:47Z" duration-ms="1" status="PASS">
+        </test-method> <!-- VerifyFail -->
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:55Z" name="getResult" finished-at="2019-12-17T13:46:56Z" duration-ms="270" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageCountOnBurgerMenu()]]>
+                <![CDATA[[TestResult name=VerifyFail status=FAILURE method=ExtentReport1.VerifyFail()[pri:2, instance:com.test.Selenium.ExtentReport1@3f6f6701] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:47Z" name="reports" finished-at="2019-04-01T11:10:47Z" duration-ms="0" status="PASS">
+        </test-method> <!-- getResult -->
+        <test-method signature="VerifySkip()[pri:3, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:56Z" name="VerifySkip" finished-at="2019-12-17T13:46:56Z" duration-ms="2" status="SKIP">
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[message]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: message
+at com.test.Selenium.ExtentReport1.VerifySkip(ExtentReport1.java:106)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifySkip -->
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:56Z" name="getResult" finished-at="2019-12-17T13:46:56Z" duration-ms="6" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageCountOnNormalMenu()]]>
+                <![CDATA[[TestResult name=VerifySkip status=SKIP method=ExtentReport1.VerifySkip()[pri:3, instance:com.test.Selenium.ExtentReport1@3f6f6701] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyUnreadMessageCountOnNormalMenu()[pri:2, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:47Z" name="verifyUnreadMessageCountOnNormalMenu" finished-at="2019-04-01T11:10:49Z" duration-ms="2099" status="PASS">
+        </test-method> <!-- getResult -->
+        <test-method signature="VerifyNodeCreation()[pri:4, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:56Z" name="VerifyNodeCreation" finished-at="2019-12-17T13:46:56Z" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyUnreadMessageCountOnNormalMenu -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:49Z" name="reportsEnd" finished-at="2019-04-01T11:10:49Z" duration-ms="0" status="PASS">
+        </test-method> <!-- VerifyNodeCreation -->
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:56Z" name="getResult" finished-at="2019-12-17T13:46:56Z" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageCountOnNormalMenu()]]>
+                <![CDATA[[TestResult name=VerifyNodeCreation status=SUCCESS method=ExtentReport1.VerifyNodeCreation()[pri:4, instance:com.test.Selenium.ExtentReport1@3f6f6701] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method signature="verifyAllMessageCountOnNormalMenu()[pri:3, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:49Z" name="verifyAllMessageCountOnNormalMenu" finished-at="2019-04-01T11:10:50Z" duration-ms="838" status="PASS">
+        </test-method> <!-- getResult -->
+        <test-method is-config="true" signature="AfterTest()[pri:0, instance:com.test.Selenium.ExtentReport1@3f6f6701]" started-at="2019-12-17T13:46:56Z" name="AfterTest" finished-at="2019-12-17T13:46:59Z" duration-ms="3243" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyAllMessageCountOnNormalMenu -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:49Z" name="reports" finished-at="2019-04-01T11:10:49Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyAllMessageCountOnNormalMenu()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="reportsEnd" finished-at="2019-04-01T11:10:50Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyAllMessageCountOnNormalMenu()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="reports" finished-at="2019-04-01T11:10:50Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageTabSelected()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyUnreadMessageTabSelected()[pri:4, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="verifyUnreadMessageTabSelected" finished-at="2019-04-01T11:10:50Z" duration-ms="155" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUnreadMessageTabSelected -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="reportsEnd" finished-at="2019-04-01T11:10:50Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUnreadMessageTabSelected()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="reports" finished-at="2019-04-01T11:10:50Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyAllMessageTabSelected()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyAllMessageTabSelected()[pri:5, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:50Z" name="verifyAllMessageTabSelected" finished-at="2019-04-01T11:10:51Z" duration-ms="167" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyAllMessageTabSelected -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:51Z" name="reportsEnd" finished-at="2019-04-01T11:10:51Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyAllMessageTabSelected()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:51Z" name="reports" finished-at="2019-04-01T11:10:51Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUserAbleToMarkAsRead()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyUserAbleToMarkAsRead()[pri:6, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:10:51Z" name="verifyUserAbleToMarkAsRead" finished-at="2019-04-01T11:11:06Z" duration-ms="15331" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUserAbleToMarkAsRead -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:06Z" name="reportsEnd" finished-at="2019-04-01T11:11:06Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUserAbleToMarkAsRead()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:06Z" name="reports" finished-at="2019-04-01T11:11:06Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUserAbleToMarkAsUnRead()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyUserAbleToMarkAsUnRead()[pri:7, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:06Z" name="verifyUserAbleToMarkAsUnRead" finished-at="2019-04-01T11:11:23Z" duration-ms="16873" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUserAbleToMarkAsUnRead -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:23Z" name="reportsEnd" finished-at="2019-04-01T11:11:23Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyUserAbleToMarkAsUnRead()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method signature="verifyDetailsOfMessage()[pri:8, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:23Z" name="verifyDetailsOfMessage" finished-at="2019-04-01T11:11:26Z" duration-ms="3650" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyDetailsOfMessage -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:23Z" name="reports" finished-at="2019-04-01T11:11:23Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyDetailsOfMessage()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:26Z" name="reportsEnd" finished-at="2019-04-01T11:11:26Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyDetailsOfMessage()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="reports(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:26Z" name="reports" finished-at="2019-04-01T11:11:26Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyPagination()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reports -->
-        <test-method signature="verifyPagination()[pri:9, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:26Z" name="verifyPagination" finished-at="2019-04-01T11:11:30Z" duration-ms="3690" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyPagination -->
-        <test-method is-config="true" signature="reportsEnd(java.lang.reflect.Method)[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:30Z" name="reportsEnd" finished-at="2019-04-01T11:11:30Z" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.certlink.DiplomateMessages.verifyPagination()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportsEnd -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:com.certlink.DiplomateMessages@2ddc9a9f]" started-at="2019-04-01T11:11:30Z" name="cleanUp" finished-at="2019-04-01T11:11:30Z" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-      </class> <!-- com.certlink.DiplomateMessages -->
+        </test-method> <!-- AfterTest -->
+      </class> <!-- com.test.Selenium.ExtentReport1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -3,16 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.certlink.DiplomateMessages">
+      <class name="com.test.Selenium.ExtentReport1">
         <methods>
-          <include name="reports"/>
-          <include name="setUp"/>
-          <include name="reportsEnd"/>
-          <include name="cleanUp"/>
-          <include name="verifyUserAbleToMarkAsRead"/>
-          <include name="verifyUserAbleToMarkAsUnRead"/>
+          <include name="AfterTest"/>
+          <include name="VerifyFail"/>
+          <include name="beforetest"/>
+          <include name="VerifySkip"/>
+          <include name="getResult"/>
         </methods>
-      </class> <!-- com.certlink.DiplomateMessages -->
+      </class> <!-- com.test.Selenium.ExtentReport1 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
