@@ -1,6 +1,7 @@
 package com.utilities;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +21,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -40,9 +40,9 @@ public class SuiteBase {
 	public static ExtentHtmlReporter reporter = null;
 	TestUtitlies tu = new TestUtitlies();
 
-	@BeforeMethod
-	@BeforeTest
-	@Parameters("browser")
+	//@BeforeMethod
+	//@BeforeTest
+//	@Parameters("Firefox")
 	public void setUp(String browser) throws Exception {
 		// A. Setup browser
 		// Check if parameter passed from TestNG is 'firefox'
@@ -71,7 +71,7 @@ public class SuiteBase {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// B. Navigate to login screen
-		driver.get("https://www.mycertlink.org/Dashboard/login.aspx#");
+		driver.get("https://pegasus-qapro.figmd.com/");
 
 		// C. DB settings
 		try {
@@ -87,7 +87,7 @@ public class SuiteBase {
 			System.out.println("Unable to make connection with DB");
 			e.printStackTrace();
 		}
-		
+
 		// D. Reports configuration
 		reporter = new ExtentHtmlReporter(
 				System.getProperty("user.dir") + "/Reports/PROExtentReport_" + tu.getDateTime() + ".html");
@@ -156,6 +156,51 @@ public class SuiteBase {
 		System.out.println("End of test scenarios.");
 		reports.flush();
 		driver.close();
+		try {
+			Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	@BeforeTest
+	public void setUp2() throws Exception {
+		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		// B. Navigate to login screen
+		driver.get("https://pegasus-qapro.figmd.com/");
+		driver.manage().window().maximize();
+
+		// C. DB settings
+		try {
+			// DriverManager.registerDriver(new
+			// com.microsoft.sqlserver.jdbc.SQLServerDriver());
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Trying to connect");
+			String dburl = "jdbc:postgresql://35.192.221.231:5432/qa_pro";
+			con = DriverManager.getConnection(dburl, "postgres", "postgres");
+			System.out.println("Connection Established Successful and the DATABASE NAME IS:"
+					+ con.getMetaData().getDatabaseProductName());
+		} catch (Exception e) {
+			System.out.println("Unable to make connection with DB");
+			e.printStackTrace();
+		}
+
+		// D. Reports configuration
+		reporter = new ExtentHtmlReporter(
+				System.getProperty("user.dir") + "/Reports/PROExtentReport_" + tu.getDateTime() + ".html");
+		reporter.config().setDocumentTitle("PRO-NIVADocument");
+		reporter.config().setReportName("PRO-NIVA As ReportName");
+		reporter.config().setTheme(Theme.DARK);
+
+		reports = new ExtentReports();
+		reports.attachReporter(reporter);
+		reports.setSystemInfo("Environment", "Production");
+		reports.setSystemInfo("OS", "Windows Server 2012 R2");
+		reports.setSystemInfo("User Name", "Jayesh Hinge");
+
+	}
 }
