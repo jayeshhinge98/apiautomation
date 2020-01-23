@@ -22,7 +22,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -31,9 +30,9 @@ public class ExtentReport1 {
 
 	// Use is for Responsible for lookup and feel
 	ExtentHtmlReporter reporter;
-	// Creates entries in you report
+	// Creates entries(tests) in you report
 	ExtentReports reports;
-	// Update your status in your report(PASS/ FAIL)
+	// Update your status in your report(PASS/ FAIL/INFO/WARNING etc)
 	ExtentTest test;
 	
 	WebDriver driver;
@@ -42,7 +41,8 @@ public class ExtentReport1 {
 	public void beforetest() {
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 		driver = new FirefoxDriver();
-		driver.get("https://www.google.com");
+		driver.get("https://pegasus-qapro.figmd.com");
+		
 		reporter = new ExtentHtmlReporter(
 				System.getProperty("user.dir") + "/Reports/PROExtentReport_" + getDateTime() + ".html");
 		// reports.
@@ -52,10 +52,9 @@ public class ExtentReport1 {
 		// Dark Theme
 		reporter.config().setTheme(Theme.STANDARD);
 
-
 		reports = new ExtentReports();
 		reports.attachReporter(reporter);
-		reports.setSystemInfo("Environment", "Production");
+		reports.setSystemInfo("Environment", "PRO QA");
 		reports.setSystemInfo("OS", "Windows Server 2012 R2");
 		reports.setSystemInfo("User Name", "Jayesh Hinge");
 	}
@@ -83,9 +82,10 @@ public class ExtentReport1 {
 		test.assignCategory("Regression");
 		// Assign Author
 		test.assignAuthor("Shrinivas");
-
+		
 		test.log(Status.INFO, "This is Step 1");
 		test.log(Status.INFO, "This is Step 2");
+		test.log(Status.INFO, "This is Step 3");
 
 		// test.log(Status.FAIL, "This test case VerifyFail is failed.");
 		Assert.fail("This test case VerifyFail is failed");
@@ -153,7 +153,6 @@ public class ExtentReport1 {
 				// be same
 				FileUtils.copyFile(source,dest );
 				
-
 				System.out.println("Screenshot taken");
 				//test.log(Status.FAIL,test.addScreenCaptureFromPath(destination) );
 				

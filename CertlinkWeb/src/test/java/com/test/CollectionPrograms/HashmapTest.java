@@ -27,7 +27,7 @@ public class HashmapTest {
 		m1.put(24,"Test1");
 	//	m1.put(23,"Test2323");
 		m1.put(25,"Test2323");
-		m1.put(26,null);
+	//	m1.put(26,null);
 	//	m1.put(null,"testpal");
 		System.out.println("Map details:"+m1);
 		m1.remove(22);
