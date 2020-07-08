@@ -20,14 +20,14 @@ import org.testng.Assert;
 
 import com.actions.CommonActions;
 import com.google.common.base.CharMatcher;
-import com.uielements.patient.DDashboardUI;
+import com.uielements.patient.DashboardUI;
 import com.utilities.TestUtitlies;
 
 public class DMessagesActions {
-	DDashboardUI dd = new DDashboardUI();
+	DashboardUI dd = new DashboardUI();
 	CommonActions ca = new CommonActions();
 	TestUtitlies tu = new TestUtitlies();
-	DLoginAction dla = new DLoginAction();
+	LoginAction dla = new LoginAction();
 
 	public String getUnreadMessageCount(WebDriver driver) {
 		new WebDriverWait(driver, 60)

@@ -27,15 +27,15 @@ import com.actions.CommonActions;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uielements.patient.DDashboardUI;
+import com.uielements.patient.DashboardUI;
 import com.utilities.TestUtitlies;
 
-public class DDashboardActions {
+public class DashboardActions {
 
-	DDashboardUI dd = new DDashboardUI();
+	DashboardUI dd = new DashboardUI();
 	CommonActions ca = new CommonActions();
 	TestUtitlies tu = new TestUtitlies();
-	DLoginAction dla = new DLoginAction();
+	LoginAction dla = new LoginAction();
 
 	public void Resources(WebDriver driver) {
 

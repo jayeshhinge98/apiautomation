@@ -3,7 +3,7 @@ package com.uielements.patient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-public class DDashboardUI {
+public class DashboardUI {
 
 	public By DDashboardUI = By.xpath("//div[@id='divNavigationItems']/a/span[text()='Dashboard']");
 	public By AssessmentDesignUI = By.xpath("//div[@id='divNavigationItems']/a/span[text()='Assessment Design']");

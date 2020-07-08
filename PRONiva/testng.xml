@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
+  <test name="Test">
     <classes>
+      <class name="com.test.SeleniumPrograms.HandleMultipleWindows"/>
+      <class name="com.test.SeleniumPrograms.CallAutoItScript"/>
+      <class name="com.test.SeleniumPrograms.DynamicTableElement"/>
+      <class name="com.test.SeleniumPrograms.ExtentReportExamples"/>
+      <class name="com.test.SeleniumPrograms.TakeScreenshots"/>
+      <class name="com.test.SeleniumPrograms.HandleMultipleTabs"/>
+      <class name="com.test.SeleniumPrograms.ExecuteFailedTestCases"/>
+      <class name="com.test.SeleniumPrograms.ParametersWithDPUsingDifferentClass"/>
+      <class name="com.test.SeleniumPrograms.parametersWithDataProviderUsingSameClass"/>
+      <class name="com.PRONiva.DiplomateLogin"/>
       <class name="com.test.demo1"/>
-      <class name="com.certlink.Login"/>
+      <class name="com.test.SeleniumPrograms.HandleAlerts"/>
+      <class name="com.PRONiva.DiplomateDashboard"/>
+      <class name="com.test.demo3"/>
       <class name="com.utilities.SuiteBase"/>
       <class name="com.test.demo2"/>
+      <class name="com.PRONiva.DiplomateMessages"/>
+      <class name="com.test.SeleniumPrograms.RunSameTestMultipleTimes"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
