@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,7 +16,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class CommonActions {
@@ -39,6 +42,15 @@ public class CommonActions {
 		}
 	}
 
+	public WebDriverWait ExplicitWait(WebDriver driver){
+	return new WebDriverWait(driver, 60);
+	}
+	public FluentWait<WebDriver> fluentWait(WebDriver driver){
+		return new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofSeconds(5)).withTimeout(Duration.ofMinutes(1))
+				.withMessage("Looking for Logout");	
+	} 
+	
+	
 	public static String sendKeys(WebDriver driver, String strLocType,
 			String strLocValue, String param1) {
 		switch (strLocType) {
@@ -105,11 +117,9 @@ public class CommonActions {
 		}
 	}
 
-	public static void navigte_to_url(WebDriver driver, String URL) {
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	public void navigte_to_url(WebDriver driver, String URL) {
 		driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
 		driver.get(URL);
-		driver.manage().window().maximize();
 	}
 
 	public static void closeBrowser(WebDriver driver) {

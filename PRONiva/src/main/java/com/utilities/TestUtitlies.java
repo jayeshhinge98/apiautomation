@@ -1,6 +1,7 @@
 package com.utilities;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 
 public class TestUtitlies {
 

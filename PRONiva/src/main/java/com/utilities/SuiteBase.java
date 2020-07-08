@@ -46,13 +46,7 @@ public class SuiteBase {
 
 	@BeforeTest
 	public void setUp() throws SQLException, ClassNotFoundException {
-		// setUpSafari();
-		// safaridriver.get("https://www.google.com");
 		setUpChrome();
-		chdriver.get("https://www.mycertlink.org/Dashboard/login.aspx#");
-		// setUpHeadLessBrowser();
-		// hldriver.get("https://www.google.com");
-
 		try {
 			// DriverManager.registerDriver(new
 			// com.microsoft.sqlserver.jdbc.SQLServerDriver());
@@ -78,7 +72,7 @@ public class SuiteBase {
 		// htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a
 		// '('zzz')'");
 		report = new ExtentReports();// System.getProperty("user.dir") +"/test-output/STMExtentReport.html", true
-		report.setSystemInfo("Environment", "Certlink Automation");
+		report.setSystemInfo("Environment", "PRO-Niva Automation");
 		report.setSystemInfo("OS", "Windows");
 		report.setSystemInfo("UserName", "Jayesh Hinge");
 		report.attachReporter(htmlReporter);
@@ -125,13 +119,10 @@ public class SuiteBase {
 	}
 
 	public void setUpChrome() {
-		System.setProperty("webdriver.chrome.driver", "D:/Jayesh Hinge/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:/QA/chromedriver.exe");
 		chdriver = new ChromeDriver();
 		chdriver.manage().window().maximize();
-		chwait = new WebDriverWait(chdriver, 60);
-		chfwait = new FluentWait<WebDriver>(chdriver).pollingEvery(Duration.ofSeconds(5))
-				.withMessage("Looking for Logout");
-
+		
 	}
 
 	public void setUpFirefox() {

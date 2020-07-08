@@ -3,8 +3,6 @@ package com.uielements.patient;
 import org.openqa.selenium.By;
 
 public class LoginUI {
-
-	
 	
 	public By Username=By.name("email");
 	public By Password=By.xpath("//label[text()='Password']/parent::div/div/input");
