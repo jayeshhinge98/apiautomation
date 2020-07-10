@@ -11,15 +11,15 @@ public class LoginUI {
 	public By PoweredByFooter=By.className("powered-by");	// compare with "Powered by "
 	public By FooterLogo=By.className("niva-logo");
 	public By Instrunctions(int i){
-			return By.xpath("//div[contains(@class,'instruction_div')]/ol/li[+"+i+"+]");
+			return By.xpath("//div[contains(@class,'instruction_div')]/ol/li["+i+"]");
 	};
 	public By LoginPageHeader=By.xpath("//title[contains(@class,'welcome-title')]");
 	public By LoginError=By.xpath("//form/div[@class='error']");
 	public By SignUpInstrunctions(int i){
-		return By.xpath("//div[contains(@class,'instruction_div')]/ol/li[+"+i+"+]/p"); 
+		return By.xpath("//div[contains(@class,'instruction_div')]/ol/li["+i+"]/p"); 
 	}
 	public By SignUpInstrunctionsHeader(int i){
-		return By.xpath("//div[contains(@class,'instruction_div')]/ol/li[+"+i+"+]/h3"); 
+		return By.xpath("//div[contains(@class,'instruction_div')]/ol/li["+i+"]/h3"); 
 	}
 	public By ConfirmPassword=By.xpath("//label[text()='Confirm Password']/parent::div/div/input");
 	public By Register=By.cssSelector("#regiserButton > span:nth-child(1)");
@@ -45,12 +45,6 @@ public class LoginUI {
 	public By ResendEmailTitle=By.xpath("//h4[contains(@class,'resendemail-title')]");
 	public By ResendEmailSubTitle=By.xpath("//h6[contains(@class,'resendemail-subtitle')]");
 	public By ResentButton=By.xpath("//button[contains(@class,'btn-resendEmail')]");
-	
-	
-	
-	
-	
-	
 	
 	
 }

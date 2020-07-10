@@ -47,19 +47,19 @@ public class SuiteBase {
 	@BeforeTest
 	public void setUp() throws SQLException, ClassNotFoundException {
 		setUpChrome();
-		try {
-			// DriverManager.registerDriver(new
-			// com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			System.out.println("Trying to connect");
-			String dburl = "jdbc:sqlserver://10.22.43.6:1433;databaseName=FIGMDHQIManagementABMS";
-			con = DriverManager.getConnection(dburl, "mapping", "mp3245");
-			System.out.println("Connection Established Successful and the DATABASE NAME IS:"
-					+ con.getMetaData().getDatabaseProductName());
-		} catch (Exception e) {
-			System.out.println("Unable to make connection with DB");
-			e.printStackTrace();
-		}
+//		try {
+//			// DriverManager.registerDriver(new
+//			// com.microsoft.sqlserver.jdbc.SQLServerDriver());
+//			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//			System.out.println("Trying to connect");
+//			String dburl = "jdbc:sqlserver://10.22.43.6:1433;databaseName=FIGMDHQIManagementABMS";
+//			con = DriverManager.getConnection(dburl, "mapping", "mp3245");
+//			System.out.println("Connection Established Successful and the DATABASE NAME IS:"
+//					+ con.getMetaData().getDatabaseProductName());
+//		} catch (Exception e) {
+//			System.out.println("Unable to make connection with DB");
+//			e.printStackTrace();
+//		}
 		String fileName = getReportPath(reportFilepath);
 
 		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
@@ -121,8 +121,7 @@ public class SuiteBase {
 	public void setUpChrome() {
 		System.setProperty("webdriver.chrome.driver", "D:/QA/chromedriver.exe");
 		chdriver = new ChromeDriver();
-		chdriver.manage().window().maximize();
-		
+		chdriver.manage().window().maximize();		
 	}
 
 	public void setUpFirefox() {
@@ -145,7 +144,7 @@ public class SuiteBase {
 
 	@AfterTest(alwaysRun = true)
 	public void cleanUp() {
-		// chdriver.quit();
+		 chdriver.quit();
 		// ffdriver.quit();
 		// safaridriver.quit();
 		// iOSdriver.quit();
