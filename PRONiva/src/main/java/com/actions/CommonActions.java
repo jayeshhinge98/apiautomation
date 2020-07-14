@@ -15,100 +15,83 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.Wait;
 
 public class CommonActions {
 
-	public static void selectFromDropDownUsingValue(WebDriver driver, By loc,
-			String selectType, String value) {
-		Select select = new Select(driver.findElement(loc));
+	// public static boolean verifyIf(WebDriver driver, By locator,
+	// String expectedConditions) {
+	// boolean check=false;
+	// Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	// .pollingEvery(Duration.ofSeconds(5))
+	// .withTimeout(Duration.ofMinutes(1))
+	// .ignoring(NoSuchElementException.class);
+	// switch (expectedConditions) {
+	// case "elementToBeSelected":
+	// check=wait.until(ExpectedConditions.elementToBeSelected(locator));
+	// return check;
+	// case "invisibilityOfElementLocated":
+	// check=wait.until(ExpectedConditions
+	// .invisibilityOfElementLocated((locator)));
+	// return check;
+	// case "stalenessOf":
+	// check=wait.until(ExpectedConditions.stalenessOf(driver
+	// .findElement(locator)));
+	// return check;
+	// default:
+	// System.out.println("Please provide expected condition");
+	// return check;
+	// }
+	// }
 
-		switch (selectType) {
-		case "selectByValue":
-			select.selectByValue(value);
-			break;
-		case "selectByIndex":
-			select.selectByIndex(Integer.parseInt(value));
-			break;
-		case "selectByVisibleText":
-			select.selectByVisibleText(value);
-			break;
-		default:
-			System.out.println("Please provide the selector");
+	/**
+	 * @method : Used to find visibility of an element
+	 * @param driver
+	 *            : WebDriver object
+	 * @param locator
+	 *            : By object
+	 * @return WebElement
+	 */
+
+	public static WebElement findVisibleElement(WebDriver driver, By locator) {
+		WebElement webElement = null;
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.pollingEvery(Duration.ofSeconds(5))
+				.withTimeout(Duration.ofMinutes(1))
+				.ignoring(NoSuchElementException.class);
+		webElement = wait.until(ExpectedConditions
+				.presenceOfElementLocated(locator));
+		return webElement;
+	}
+	/**
+	 *  Used to check whether element is present or not
+	 * @param driver
+	 * @param locator
+	 * @return boolean
+	 */
+	public static boolean isElementVisible(WebDriver driver, By locator) {
+		try{
+			findVisibleElement(driver, locator);
+			return true;
+		}catch(NoSuchElementException e){
+			return false;
 		}
 	}
 
-	public WebDriverWait ExplicitWait(WebDriver driver){
-	return new WebDriverWait(driver, 60);
-	}
-	public FluentWait<WebDriver> fluentWait(WebDriver driver){
-		return new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofSeconds(5)).withTimeout(Duration.ofMinutes(1))
-				.withMessage("Looking for Logout");	
-	} 
 	
-	
-	public static String sendKeys(WebDriver driver, String strLocType,
-			String strLocValue, String param1) {
-		switch (strLocType) {
-		case "id":
-			driver.findElement(By.id(strLocValue)).clear();
-			driver.findElement(By.id(strLocValue)).sendKeys(param1);
-			break;
-		case "name":
-			driver.findElement(By.name(strLocValue)).clear();
-			driver.findElement(By.name(strLocValue)).sendKeys(param1);
-		case "xpath":
-			driver.findElement(By.xpath(strLocValue)).clear();
-			driver.findElement(By.xpath(strLocValue)).sendKeys(param1);
-		case "className":
-			driver.findElement(By.className(strLocValue)).clear();
-			driver.findElement(By.className(strLocValue)).sendKeys(param1);
-		case "linkText":
-			driver.findElement(By.linkText(strLocValue)).clear();
-			driver.findElement(By.linkText(strLocValue)).sendKeys(param1);
-		case "cssSelector":
-			driver.findElement(By.cssSelector(strLocValue)).clear();
-			driver.findElement(By.cssSelector(strLocValue)).sendKeys(param1);
-		default:
-			System.out.println("Please provide the selector");
-		}
-		return null;
-
-	}
-
-	public static String click(WebDriver driver, String strLocType,
-			String strLocValue, String param1) {
-		switch (strLocType) {
-		case "id":
-			driver.findElement(By.id(strLocValue)).click();
-			break;
-		case "name":
-			driver.findElement(By.name(strLocValue)).click();
-			break;
-		case "xpath":
-			driver.findElement(By.xpath(strLocValue)).click();
-			break;
-		case "className":
-			driver.findElement(By.className(strLocValue)).click();
-			break;
-		case "linkText":
-			driver.findElement(By.linkText(strLocValue)).click();
-			break;
-		case "cssSelector":
-			driver.findElement(By.cssSelector(strLocValue)).click();
-			break;
-		default:
-			System.out.println("Please provide the selector");
-			break;
-		}
-		return null;
-
-	}
-
+	/**
+	 * Description: Used to verify page title
+	 * 
+	 * @param driver
+	 *            : WebDriver object
+	 * @param title
+	 *            : string used to compare with actual title
+	 * @return boolean
+	 */
 	public static boolean verifyTitle(WebDriver driver, String title) {
 		if (driver.getTitle().equals(title)) {
 			return true;
@@ -117,119 +100,43 @@ public class CommonActions {
 		}
 	}
 
+	/**
+	 * Description: Used to navigate to required URL
+	 * 
+	 * @param driver
+	 * @param URL
+	 */
 	public void navigte_to_url(WebDriver driver, String URL) {
-		driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.get(URL);
 	}
 
-	public static void closeBrowser(WebDriver driver) {
-		driver.close();
-		driver.quit();
+	/**
+	 * Used to enter text into text field
+	 * 
+	 * @param driver
+	 * @param by
+	 * @param keysToSend
+	 */
+	public static void enterTextInTextField(WebDriver driver, By by,
+			String keysToSend) {
+		driver.findElement(by).clear();
+		driver.findElement(by).sendKeys(keysToSend);
 	}
 
-	public boolean isElementPresent(WebDriver driver, By by) {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		try {
-			driver.findElement(by);
-			return true;
-		} catch (NoSuchElementException e) {
-			return false;
-		}
-	}
-
-	public boolean isElementDisplayed(WebDriver driver, By by) {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		if (driver.findElement(by).isDisplayed()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean isElementEnabled(WebDriver driver, By by) {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		if (driver.findElement(by).isEnabled()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void clickOnElementByMouseHover(WebDriver driver, By by) {
-		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).click()
-					.build().perform();
-			System.out.println("Element " + by.toString()
-					+ " clicked by mouse hover.");
-			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
-
-		} else {
-			System.out.println("Element " + by.toString() + " not present.");
-			// logger.log(LogStatus.FAIL,"Element "+by.toString()+" not present.");
-			Assert.fail("Element " + by.toString() + " not present.");
-		}
-	}
-
-	public void mouseHoverOnElement(WebDriver driver, By by) {
-		if (isElementPresent(driver, by)) {
-			new Actions(driver).moveToElement(driver.findElement(by)).build()
-					.perform();
-			// System.out.println("Element " + by.toString() +
-			// " clicked by mouse hover.");
-			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
-
-		} else {
-			System.out.println("Element " + by.toString() + " not present.");
-			// logger.log(LogStatus.FAIL,"Element "+by.toString()+" not present.");
-			Assert.fail("Element " + by.toString() + " not present.");
-		}
-	}
-
-	public void clickOnElement(WebDriver driver, By by) {
-		if (isElementPresent(driver, by)) {
-			driver.findElement(by).click();
-			System.out.println("Element " + by.toString() + " clicked.");
-			// logger.log(LogStatus.INFO,"Element "+by.toString()+" clicked.");
-
-		} else {
-			System.out.println("Element " + by.toString() + " not present.");
-			// logger.log(LogStatus.FAIL,"Element "+by.toString()+" not present.");
-			Assert.fail("Element " + by.toString() + " not present.");
-		}
-	}
-
-	public void clearText(WebDriver driver, By by) {
-		if (isElementPresent(driver, by)) {
-			driver.findElement(by).clear();
-			System.out.println("Textfield " + by.toString() + " cleared.");
-			// logger.log(LogStatus.INFO,"Textfield "+by.toString()+" cleared.");
-
-		} else {
-			System.out.println("Textfield " + by.toString() + " not present.");
-			// logger.log(LogStatus.FAIL,"Element "+by.toString()+" not present.");
-			Assert.fail("Textfield " + by.toString() + " not present.");
-		}
-	}
-
-	public void enterTextInTextField(WebDriver driver, By by, String keysToSend) {
-		if (isElementPresent(driver, by)) {
-			clickOnElement(driver, by);
-			driver.findElement(by).clear();
-			driver.findElement(by).sendKeys(keysToSend);
-			System.out.println("Entered text in Textfield " + by.toString()
-					+ ".");
-			// logger.log(LogStatus.INFO,"Entered text in Textfield "+by.toString()+".");
-		} else {
-			System.out.println("Textfield " + by.toString() + " not present.");
-			// logger.log(LogStatus.FAIL,"Element "+by.toString()+" not present.");
-			Assert.fail("Textfield " + by.toString() + " not present.");
-		}
-	}
-
-	public static String[][] getExcelData(String sheetName) throws Exception,
-			IOException {
+	/**
+	 * 
+	 * @param sheetName
+	 * @param rownum
+	 * @param colnum
+	 * @return
+	 * @throws Exception
+	 * @throws IOException
+	 */
+	public static String[][] getExcelData(String sheetName, String rownum,
+			String colnum) throws Exception, IOException {
 		String data[][] = null;
-		File file = new File("");
+		File file = new File(""); // Add filename here
 		Workbook wb = new XSSFWorkbook(file);
 		Sheet sheet = wb.getSheet(sheetName);
 		int numberOfRows = sheet.getLastRowNum();
@@ -244,16 +151,48 @@ public class CommonActions {
 		return data;
 	}
 
-	public String getTextForLocator(WebDriver driver, By by) {
+	/**
+	 * 
+	 * @param driver
+	 * @param by
+	 * @return
+	 */
+	public static String getTextForLocator(WebDriver driver, By by) {
 		return driver.findElement(by).getText();
 	}
 
-	public String getAttributeValue(WebDriver driver, By by,
+	/**
+	 * 
+	 * @param driver
+	 * @param by
+	 * @return
+	 */
+	public static String getToolTipForLocator(WebDriver driver, By by) {
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(by)).build().perform();
+		return driver.findElement(by).getText();
+	}
+
+	/**
+	 * 
+	 * @param driver
+	 * @param by
+	 * @param attributeName
+	 * @return
+	 */
+	public static String getAttributeValue(WebDriver driver, By by,
 			String attributeName) {
 		return driver.findElement(by).getAttribute(attributeName);
 	}
 
-	public String returnDBData(Connection con, String sqlquery,
+	/**
+	 * 
+	 * @param con
+	 * @param sqlquery
+	 * @param columnName
+	 * @return
+	 */
+	public static String returnDBData(Connection con, String sqlquery,
 			String columnName) {
 		String result = null;
 		try {

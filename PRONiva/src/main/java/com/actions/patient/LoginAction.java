@@ -1,64 +1,81 @@
 package com.actions.patient;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import com.actions.CommonActions;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.uielements.patient.DashboardUI;
 import com.uielements.patient.LoginUI;
 
-public class LoginAction {
+public class LoginAction extends CommonActions {
 
-	LoginUI login1 = new LoginUI();
-	DashboardUI dd = new DashboardUI();
-	CommonActions ca = new CommonActions();
+	LoginUI loginUI = new LoginUI();
+	DashboardUI dashboardUI = new DashboardUI();
 
-	public void Login(WebDriver driver, String username, String password,
-			String scenario) {
-		ca.enterTextInTextField(driver, login1.Username, username);
-		ca.enterTextInTextField(driver, login1.Password, password);
-		ca.clickOnElement(driver, login1.LoginButton);
-		if (scenario.equalsIgnoreCase("valid"))
-			Assert.assertTrue(ca.isElementPresent(driver, dd.ProfileButton),
-					"FAIL: Login failed");
-		if (scenario.equalsIgnoreCase("Invalid"))
-			Assert.assertTrue(ca.isElementPresent(driver, login1.LoginButton),
-					"FAIL: Login failed");
+	/**
+	 * 
+	 * @param driver
+	 * @param username
+	 * @param password
+	 */
+	public void Login(WebDriver driver, String username, String password) {
+		
+		enterTextInTextField(driver, loginUI.Username, username);
+		enterTextInTextField(driver, loginUI.Password, password);
+		driver.findElement(loginUI.LoginButton).click();
 	}
 
+	/**
+	 * 
+	 * @param driver
+	 */
 	public void Logout(WebDriver driver) {
-		ca.clickOnElement(driver, dd.ProfileButton);
-		ca.clickOnElement(driver, dd.Logout);
+		driver.findElement(dashboardUI.ProfileButton).click();
+		driver.findElement(dashboardUI.Logout).click();
+		isElementVisible(driver, dashboardUI.LogoutPopupMessage);
+		driver.findElement(dashboardUI.LogoutConfirmButton).click();
+	}
 
-		ca.ExplicitWait(driver).until(
-				ExpectedConditions
-						.visibilityOfElementLocated(dd.LogoutPopupMessage));
-		ca.clickOnElement(driver, dd.LogoutConfirmButton);
-		try {
-			ca.ExplicitWait(driver).until(
-					ExpectedConditions
-							.visibilityOfElementLocated(login1.LoginButton));
-			Assert.assertTrue(ca.isElementPresent(driver, login1.LoginButton),
-					"FAIL: Patient user unable to logout.");
-		} catch (Exception e) {
-			Assert.fail("FAIL: Patient user unable to logout." + e);
+	/**
+	 * 
+	 * @param driver
+	 * @return
+	 */
+	public boolean isNivaUserPresentOnLoginPage(WebDriver driver) {
+		if (isElementVisible(driver, loginUI.LoginButton)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	public void LoginPageUI(WebDriver driver) {	
+	public void LoginPageUI(WebDriver driver, ExtentTest logger) {
 		Assert.assertEquals(
-				ca.getTextForLocator(driver, login1.Instrunctions(1)),
-				"To log into your account, please enter your email address and the password","Instruction message not present.");
-		Assert.assertEquals(ca.getTextForLocator(driver, login1.Instrunctions(2)), "Click \"Login\"","Instruction message not present.");	
-		Assert.assertEquals(ca.getTextForLocator(driver, login1.LoginPageHeader), "Account Login");
-		Assert.assertTrue(ca.isElementPresent(driver, login1.PoweredByFooter));
-		Assert.assertTrue(ca.isElementPresent(driver, login1.FooterLogo));
-		
+				getTextForLocator(driver, loginUI.Instrunctions(1)),
+				"To log into your account, please enter your email address and the password",
+				"Instruction message not present.");
+		logger.log(Status.INFO, "1st Instrunction is present");
+		Assert.assertEquals(
+				getTextForLocator(driver, loginUI.Instrunctions(2)),
+				"Click \"Login\"", "Instruction message not present.");
+		logger.log(Status.INFO, "2nd Instrunction is present");
+		Assert.assertEquals(
+				getTextForLocator(driver, loginUI.LoginPageHeader),
+				"Account Login");
+		logger.log(Status.INFO, "Login page header is present");
+		Assert.assertTrue(isElementVisible(driver, loginUI.PoweredByFooter));
+		logger.log(Status.INFO, "Footer text is present");
+		Assert.assertTrue(isElementVisible(driver, loginUI.FooterLogo));
+		logger.log(Status.INFO, "Footer logo is present");
+		logger.log(Status.PASS, "Verified all Login page UI elements.");
 	}
-	
-//	public void 
-	
-	
-	
+
+	public boolean isNivaUserPresentOnDashBoard(WebDriver driver) {
+		return isElementVisible(driver, dashboardUI.ProfileButton);
+	}
+
+	// public void
+
 }
