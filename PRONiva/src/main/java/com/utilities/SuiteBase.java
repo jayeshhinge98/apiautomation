@@ -47,9 +47,8 @@ public class SuiteBase {
 		htmlReporter.config().setDocumentTitle(reportFileName);
 		htmlReporter.config().setEncoding("utf-8");
 		htmlReporter.config().setReportName(reportFileName);
-		// htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a
-		// '('zzz')'");
-		report = new ExtentReports();// System.getProperty("user.dir") +"/test-output/STMExtentReport.html", true
+		//htmlReporter.config()).setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a'('zzz')'");
+		report = new ExtentReports();
 		report.setSystemInfo("Environment", "PRO-Niva Automation");
 		report.setSystemInfo("OS", "Windows");
 		report.setSystemInfo("UserName", "Jayesh Hinge");
